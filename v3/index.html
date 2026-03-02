@@ -52,14 +52,20 @@ img{max-width:100%;display:block}
 .hero-text{flex:1;text-align:left}
 .hero-phone-right{flex-shrink:0;width:280px}
 .hero-bg-phone{display:none}
+.hero-mobile-phone{display:none}
 @media(max-width:699px){
 .hero-inner{flex-direction:column;text-align:center}
 .hero-text{text-align:center}
+.hero-text .hero-sub{display:none}
+.hero-text .store-row{display:none}
 .hero-sub{margin-left:auto;margin-right:auto}
 .hero-phone-right{display:none}
-.hero-bg-phone{display:block;position:absolute;right:-60px;top:50%;transform:translateY(-50%) rotate(5deg);width:260px;opacity:0.15;z-index:1;pointer-events:none}
+.hero-mobile-phone{display:block;width:200px;margin:24px auto;border-radius:28px;border:3px solid #333;background:#000;padding:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);transform:rotate(-2deg)}
+.hero-mobile-phone img{border-radius:22px;width:100%;display:block}
+.hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:16px auto 24px;line-height:1.6;text-align:center}
+.hero-mobile-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 }
-@media(min-width:700px){.hero-bg-phone{display:none}}
+@media(min-width:700px){.hero-bg-phone{display:none};.hero-mobile-phone{display:none};.hero-mobile-sub{display:none};.hero-mobile-cta{display:none}}
 .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(107,203,119,.12);border:1px solid rgba(107,203,119,.2);color:var(--green);font-size:.82rem;font-weight:700;padding:8px 18px;border-radius:50px;margin-bottom:24px}
 .hero h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:900;line-height:1.12;color:#fff;margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto}
 .duo-box{display:inline-flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid rgba(107,203,119,.15);border-radius:var(--radius);padding:14px 24px;margin-bottom:20px;font-size:1rem;font-weight:700}
@@ -222,6 +228,23 @@ Google Play
 <img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" loading="eager">
 </div>
 </div>
+</div>
+</div>
+
+<!-- Mobile: prominent phone between headline and subtitle -->
+<div class="hero-mobile-phone">
+<img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" loading="eager">
+</div>
+<p class="hero-mobile-sub">Like Duolingo, but for staying alive. Bite-sized lessons, addictive quizzes, and gamified learning — 100% free to start.</p>
+<div class="hero-mobile-cta">
+<a href="https://apps.apple.com/app/gridless" class="store-btn">
+<svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+App Store
+</a>
+<a href="https://play.google.com/store/apps/details?id=com.thegridless.app" class="store-btn">
+<svg viewBox="0 0 24 24"><path d="M3.18 23.68c-.35-.2-.57-.57-.57-.97V1.29c0-.4.22-.77.57-.97l11.83 11.68L3.18 23.68zm1.4.97l12.52-7.24-2.76-2.73-9.76 9.97zm0-23.3L14.34 11.32l2.76-2.73L4.58.35zm16.72 9.95l-3.65-2.11-3.04 3.01 3.04 3.01 3.65-2.11c.67-.39.67-1.41 0-1.8z"/></svg>
+Google Play
+</a>
 </div>
 </div>
 </section>
