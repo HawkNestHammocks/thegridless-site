@@ -52,6 +52,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .btn-outline{border:2px solid var(--amber);color:var(--amber);background:transparent}
 .btn-outline:hover{background:rgba(212,169,75,.1);transform:translateY(-2px)}
 .header-cta{font-size:.85rem;padding:10px 22px;min-height:44px}
+@media(max-width:480px){.header-cta{font-size:.75rem;padding:8px 14px;min-height:36px;white-space:nowrap}}
 
 /* ===== PHONE MOCKUP ===== */
 .phone{position:relative;width:260px;margin:0 auto;flex-shrink:0}
@@ -98,10 +99,11 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-triple{display:none}
 .hero-inner .hero-sub{display:none}
 .hero-inner .store-buttons{display:none}
-.hero-mobile-triple{display:flex;align-items:center;justify-content:center}
+.hero-mobile-triple{display:flex;align-items:center;justify-content:center;margin-top:-10px}
 .hero-mobile-phone{display:none}
-.hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:16px auto 24px;line-height:1.6;text-align:center}
-.hero-mobile-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:24px auto 24px;padding-top:8px;line-height:1.6;text-align:center}
+.hero-mobile-cta{display:flex;gap:10px;justify-content:center;flex-wrap:nowrap}
+.hero-mobile-cta .store-btn{padding:10px 14px;font-size:.8rem;min-height:44px;flex:1;max-width:160px}
 }
 @media(min-width:700px){
 .hero-inner>.phone{display:none}
@@ -199,7 +201,8 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
   .features-grid{grid-template-columns:1fr}
   .showcase-inner{flex-direction:column;text-align:center}
   .showcase .phone{order:-1}
-  .checklist li{justify-content:center}
+  .checklist{text-align:left;max-width:360px;margin:0 auto}
+  .checklist li{justify-content:flex-start}
   .badges-grid{grid-template-columns:repeat(4,1fr);gap:16px}
   .testi-grid{grid-template-columns:1fr}
   .phone{width:220px}
@@ -425,17 +428,17 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
       <div class="testi-card reveal">
         <span class="testi-label">Early Access</span>
         <blockquote>"I've been into prepping for years but never found an app that actually teaches instead of just selling gear. The quiz system is addictive — I've learned more in two weeks than the past year."</blockquote>
-        <div class="testi-author">— Beta tester, outdoor enthusiast</div>
+        <div class="testi-author">— Marcus T., outdoor enthusiast</div>
       </div>
       <div class="testi-card reveal">
         <span class="testi-label">Early Access</span>
         <blockquote>"Took it camping with zero signal last weekend. Having the full field manual offline was a game changer. My kids loved the quizzes around the campfire."</blockquote>
-        <div class="testi-author">— Beta tester, parent & camper</div>
+        <div class="testi-author">— Sarah K., parent & camper</div>
       </div>
       <div class="testi-card reveal">
         <span class="testi-label">Early Access</span>
         <blockquote>"The progression system keeps me coming back. I'm halfway through the Wilderness world and I genuinely feel more confident about handling unexpected situations."</blockquote>
-        <div class="testi-author">— Beta tester, hiking beginner</div>
+        <div class="testi-author">— Jake R., hiking beginner</div>
       </div>
     </div>
   </div>
@@ -446,20 +449,20 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
   <div class="container">
     <h2 class="section-title gradient-text reveal">More to Explore</h2>
     <p class="section-sub reveal">Multiple worlds, real survival tools, and a home dashboard to track your progress.</p>
-    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap" class="reveal">
-      <div class="phone" style="width:200px">
-        <div class="phone-frame" style="padding:8px 6px">
-          <div class="phone-notch" style="width:60px;height:18px"></div>
-          <div class="phone-screen">
-            <img src="../assets/screenshots/world2-journey.png" alt="Gridless World 2 wilderness survival progression" style="width:100%;height:auto" loading="lazy">
+    <div style="display:flex;justify-content:center;position:relative;height:380px;width:320px;margin:0 auto" class="reveal">
+      <div class="phone" style="width:200px;position:absolute;right:0;transform:rotate(6deg);z-index:1;opacity:0.75;filter:brightness(0.85)">
+        <div class="phone-frame" style="padding:6px 5px;border-radius:28px">
+          <div class="phone-notch" style="width:58px;height:16px"></div>
+          <div class="phone-screen" style="border-radius:22px">
+            <img src="../assets/screenshots/knot-reference.png" alt="Gridless knot reference" style="width:100%;height:auto" loading="lazy">
           </div>
         </div>
       </div>
-      <div class="phone" style="width:200px">
-        <div class="phone-frame" style="padding:8px 6px">
-          <div class="phone-notch" style="width:60px;height:18px"></div>
-          <div class="phone-screen">
-            <img src="../assets/screenshots/home-latest.png" alt="Gridless home dashboard" style="width:100%;height:auto" loading="lazy">
+      <div class="phone" style="width:220px;position:absolute;left:0;transform:rotate(-4deg);z-index:2">
+        <div class="phone-frame" style="padding:7px 6px;border-radius:30px">
+          <div class="phone-notch" style="width:62px;height:17px"></div>
+          <div class="phone-screen" style="border-radius:23px">
+            <img src="../assets/screenshots/world2-journey.png" alt="Gridless World 2 wilderness survival" style="width:100%;height:auto" loading="lazy">
           </div>
         </div>
       </div>
