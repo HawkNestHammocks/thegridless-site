@@ -61,6 +61,26 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .phone-screen img{width:100%;display:block}
 .phone-glow{position:absolute;inset:-20%;background:radial-gradient(circle,rgba(212,169,75,.12) 0%,transparent 70%);pointer-events:none;z-index:-1}
 
+/* Hero triple phone */
+.hero-triple{display:flex;justify-content:center;align-items:center;position:relative;height:340px;width:360px;flex-shrink:0}
+.hero-triple::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:400px;background:radial-gradient(ellipse,rgba(212,169,75,0.15) 0%,transparent 70%);z-index:0;pointer-events:none}
+.hero-triple .phone-frame{width:180px;position:absolute;border-radius:28px;padding:6px 5px}
+.hero-triple .phone-frame .phone-notch{width:55px;height:15px;top:5px;border-radius:0 0 9px 9px}
+.hero-triple .phone-frame .phone-screen{border-radius:22px}
+.hero-triple .phone-frame.left{transform:rotate(-8deg) translateX(-85px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+.hero-triple .phone-frame.center{transform:rotate(0deg);z-index:3;width:200px}
+.hero-triple .phone-frame.center .phone-notch{width:65px;height:17px;top:6px}
+.hero-triple .phone-frame.right{transform:rotate(8deg) translateX(85px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+/* Mobile triple */
+.hero-mobile-triple{display:none;position:relative;height:280px;width:300px;margin:0 auto}
+.hero-mobile-triple .phone-frame{position:absolute;left:50%;width:140px;margin-left:-70px;border-radius:22px;padding:4px}
+.hero-mobile-triple .phone-frame .phone-notch{width:48px;height:13px;top:4px;border-radius:0 0 8px 8px}
+.hero-mobile-triple .phone-frame .phone-screen{border-radius:18px}
+.hero-mobile-triple .phone-frame.left{transform:rotate(-8deg) translateX(-65px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+.hero-mobile-triple .phone-frame.center{transform:rotate(0deg);z-index:3;width:160px;margin-left:-80px}
+.hero-mobile-triple .phone-frame.center .phone-notch{width:54px;height:14px}
+.hero-mobile-triple .phone-frame.right{transform:rotate(8deg) translateX(65px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+
 /* ===== HERO ===== */
 .hero{padding:80px 0 60px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:radial-gradient(ellipse at 50% 0%,rgba(232,125,47,.06) 0%,transparent 60%);pointer-events:none}
@@ -75,15 +95,18 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-sub{margin-left:auto;margin-right:auto}
 .store-buttons{justify-content:center}
 .hero-inner>.phone{display:none}
+.hero-triple{display:none}
 .hero-inner .hero-sub{display:none}
 .hero-inner .store-buttons{display:none}
-.hero-mobile-phone{display:block;width:200px;margin:24px auto;border-radius:28px;border:3px solid #333;background:#000;padding:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);transform:rotate(-2deg)}
-.hero-mobile-phone img{border-radius:22px;width:100%;display:block}
+.hero-mobile-triple{display:flex;align-items:center;justify-content:center}
+.hero-mobile-phone{display:none}
 .hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:16px auto 24px;line-height:1.6;text-align:center}
 .hero-mobile-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 }
 @media(min-width:700px){
-.hero-inner>.phone{flex-shrink:0;width:280px}
+.hero-inner>.phone{display:none}
+.hero-triple{display:flex}
+.hero-mobile-triple{display:none!important}
 .hero-mobile-phone{display:none}
 .hero-mobile-sub{display:none}
 .hero-mobile-cta{display:none}
@@ -220,20 +243,37 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
         </a>
       </div>
     </div>
-    <div class="phone reveal">
-      <div class="phone-glow"></div>
-      <div class="phone-frame">
+    <!-- Desktop: triple phone -->
+    <div class="hero-triple reveal">
+      <div class="phone-frame left">
         <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" style="width:100%;height:auto" loading="eager">
-        </div>
+        <div class="phone-screen"><img src="../assets/screenshots/journey-home.png" alt="Journey" style="width:100%;height:auto" loading="eager"></div>
+      </div>
+      <div class="phone-frame center">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" style="width:100%;height:auto" loading="eager"></div>
+      </div>
+      <div class="phone-frame right">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><img src="../assets/screenshots/quiz-question.png" alt="Quiz" style="width:100%;height:auto" loading="eager"></div>
       </div>
     </div>
   </div>
 
-  <!-- Mobile: prominent phone between headline and subtitle -->
-  <div class="hero-mobile-phone">
-    <img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" loading="eager">
+  <!-- Mobile: triple phone -->
+  <div class="hero-mobile-triple">
+    <div class="phone-frame left">
+      <div class="phone-notch"></div>
+      <div class="phone-screen"><img src="../assets/screenshots/journey-home.png" alt="Journey" style="width:100%;height:auto" loading="eager"></div>
+    </div>
+    <div class="phone-frame center">
+      <div class="phone-notch"></div>
+      <div class="phone-screen"><img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" style="width:100%;height:auto" loading="eager"></div>
+    </div>
+    <div class="phone-frame right">
+      <div class="phone-notch"></div>
+      <div class="phone-screen"><img src="../assets/screenshots/quiz-question.png" alt="Quiz" style="width:100%;height:auto" loading="eager"></div>
+    </div>
   </div>
   <p class="hero-mobile-sub">Become the person everyone turns to in an emergency. Real survival knowledge, gamified learning, zero fluff — all offline.</p>
   <div class="hero-mobile-cta">

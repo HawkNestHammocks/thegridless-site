@@ -21,7 +21,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
 --bg:#111110;--bg2:#1a1918;--bg3:#252422;
---green:#6BCB77;--green-dark:#4CAF50;--amber:#D4A94B;
+--green:#5A9E5F;--green-dark:#3D7B41;--amber:#D4A94B;
 --cream:#F5E6C8;--dim:#B8A88A;
 --radius:16px;--radius-sm:10px;
 }
@@ -60,12 +60,13 @@ img{max-width:100%;display:block}
 .hero-text .store-row{display:none}
 .hero-sub{margin-left:auto;margin-right:auto}
 .hero-phone-right{display:none}
-.hero-mobile-phone{display:block;width:200px;margin:24px auto;border-radius:28px;border:3px solid #333;background:#000;padding:6px;box-shadow:0 20px 60px rgba(0,0,0,.5);transform:rotate(-2deg)}
-.hero-mobile-phone img{border-radius:22px;width:100%;display:block}
+.hero-triple{display:none}
+.hero-mobile-triple{display:flex;align-items:center;justify-content:center}
+.hero-mobile-phone{display:none}
 .hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:16px auto 24px;line-height:1.6;text-align:center}
 .hero-mobile-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 }
-@media(min-width:700px){.hero-bg-phone{display:none};.hero-mobile-phone{display:none};.hero-mobile-sub{display:none};.hero-mobile-cta{display:none}}
+@media(min-width:700px){.hero-bg-phone{display:none};.hero-mobile-triple{display:none!important};.hero-mobile-phone{display:none};.hero-mobile-sub{display:none};.hero-mobile-cta{display:none}}
 .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(107,203,119,.12);border:1px solid rgba(107,203,119,.2);color:var(--green);font-size:.82rem;font-weight:700;padding:8px 18px;border-radius:50px;margin-bottom:24px}
 .hero h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:900;line-height:1.12;color:#fff;margin-bottom:20px;max-width:600px;margin-left:auto;margin-right:auto}
 .duo-box{display:inline-flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid rgba(107,203,119,.15);border-radius:var(--radius);padding:14px 24px;margin-bottom:20px;font-size:1rem;font-weight:700}
@@ -76,6 +77,26 @@ img{max-width:100%;display:block}
 .phone{position:relative;width:260px;margin:0 auto;border-radius:32px;border:4px solid #333;background:#000;padding:8px;box-shadow:0 24px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05)}
 .phone::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:80px;height:24px;background:#1a1a1a;border-radius:0 0 14px 14px;z-index:2}
 .phone img{border-radius:24px;width:100%;display:block}
+
+/* Hero triple phone */
+.hero-triple{display:flex;justify-content:center;align-items:center;position:relative;height:340px;width:360px;flex-shrink:0}
+.hero-triple::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:400px;background:radial-gradient(ellipse,rgba(76,175,80,0.12) 0%,transparent 70%);z-index:0;pointer-events:none}
+.hero-triple .phone{position:absolute;width:180px;border-radius:26px;padding:5px}
+.hero-triple .phone::before{width:58px;height:16px;top:5px;border-radius:0 0 10px 10px}
+.hero-triple .phone img{border-radius:21px}
+.hero-triple .phone.left{transform:rotate(-8deg) translateX(-85px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+.hero-triple .phone.center{transform:rotate(0deg);z-index:3;width:200px}
+.hero-triple .phone.center::before{width:66px;height:18px;top:6px}
+.hero-triple .phone.right{transform:rotate(8deg) translateX(85px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+/* Mobile triple */
+.hero-mobile-triple{display:none;position:relative;height:280px;width:300px;margin:0 auto}
+.hero-mobile-triple .phone{position:absolute;left:50%;width:140px;margin-left:-70px;border-radius:22px;padding:4px}
+.hero-mobile-triple .phone::before{width:48px;height:13px;top:4px;border-radius:0 0 8px 8px}
+.hero-mobile-triple .phone img{border-radius:18px}
+.hero-mobile-triple .phone.left{transform:rotate(-8deg) translateX(-65px);z-index:1;opacity:0.75;filter:brightness(0.8)}
+.hero-mobile-triple .phone.center{transform:rotate(0deg);z-index:3;width:160px;margin-left:-80px}
+.hero-mobile-triple .phone.center::before{width:54px;height:14px}
+.hero-mobile-triple .phone.right{transform:rotate(8deg) translateX(65px);z-index:1;opacity:0.75;filter:brightness(0.8)}
 
 /* Store buttons */
 .store-row{display:flex;gap:14px;justify-content:center;margin-top:32px;flex-wrap:wrap}
@@ -223,17 +244,20 @@ Google Play
 </a>
 </div>
 </div>
-<div class="hero-phone-right">
-<div class="phone">
-<img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" loading="eager">
-</div>
+<!-- Desktop: triple phone -->
+<div class="hero-triple">
+<div class="phone left"><img src="../assets/screenshots/journey-home.png" alt="Journey" style="width:100%;height:auto" loading="eager"></div>
+<div class="phone center"><img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" style="width:100%;height:auto" loading="eager"></div>
+<div class="phone right"><img src="../assets/screenshots/quiz-question.png" alt="Quiz" style="width:100%;height:auto" loading="eager"></div>
 </div>
 </div>
 </div>
 
-<!-- Mobile: prominent phone between headline and subtitle -->
-<div class="hero-mobile-phone">
-<img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" loading="eager">
+<!-- Mobile: triple phone -->
+<div class="hero-mobile-triple">
+<div class="phone left"><img src="../assets/screenshots/journey-home.png" alt="Journey" style="width:100%;height:auto" loading="eager"></div>
+<div class="phone center"><img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" style="width:100%;height:auto" loading="eager"></div>
+<div class="phone right"><img src="../assets/screenshots/quiz-question.png" alt="Quiz" style="width:100%;height:auto" loading="eager"></div>
 </div>
 <p class="hero-mobile-sub">Like Duolingo, but for staying alive. Bite-sized lessons, addictive quizzes, and gamified learning — 100% free to start.</p>
 <div class="hero-mobile-cta">
