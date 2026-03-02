@@ -114,9 +114,9 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-mobile-sub{display:none}
 .hero-mobile-cta{display:none}
 }
-.store-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 24px;min-height:52px;color:var(--cream);font-weight:500;font-size:.9rem;transition:border-color .2s,transform .2s}
-.store-btn:hover{border-color:var(--amber);transform:translateY(-2px)}
-.store-btn svg{width:22px;height:22px;fill:currentColor}
+.store-btn{display:inline-block;transition:transform .2s,opacity .2s}
+.store-btn:hover{transform:scale(1.05);opacity:0.9}
+.store-btn img{height:48px;width:auto;display:block}
 
 /* ===== STATS BAR ===== */
 .stats{padding:48px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
@@ -298,14 +298,8 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
       <h1 class="gradient-text">Master the Wild.<br>Own Your Survival.</h1>
       <p class="hero-sub">Become the person everyone turns to in an emergency. Real survival knowledge, gamified learning, zero fluff — all offline.</p>
       <div class="store-buttons" id="download">
-        <a href="#" class="store-btn" aria-label="Download on the App Store">
-          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          App Store
-        </a>
-        <a href="#" class="store-btn" aria-label="Get it on Google Play">
-          <svg viewBox="0 0 24 24"><path d="M3.18 23.27c-.36-.17-.57-.52-.57-.94V1.67c0-.42.21-.77.57-.94l11.07 11.27L3.18 23.27zm1.4.52l12.18-6.94-2.72-2.77-9.46 9.71zm15.38-10.22c.35.2.56.54.56.93s-.21.73-.56.93l-2.38 1.36-2.97-3.03 2.97-3.03 2.38 1.36v.48zm-2.91-2.11L4.58.52l9.46 9.71 2.72-2.77-.71-.4z"/></svg>
-          Google Play
-        </a>
+        <a href="https://testflight.apple.com/join/XN7bTpZm" class="store-btn" target="_blank"><img src="../assets/images/app-store-badge.svg" alt="Download on the App Store"></a>
+        <a href="https://play.google.com/apps/testing/com.hawknesthammocks.gridless" class="store-btn" target="_blank"><img src="../assets/images/google-play-badge.png" alt="Get it on Google Play"></a>
       </div>
     </div>
     <!-- Desktop: triple phone -->
@@ -342,14 +336,8 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
   </div>
   <p class="hero-mobile-sub">Become the person everyone turns to in an emergency. Real survival knowledge, gamified learning, zero fluff — all offline.</p>
   <div class="hero-mobile-cta">
-    <a href="#" class="store-btn" aria-label="Download on the App Store">
-      <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      App Store
-    </a>
-    <a href="#" class="store-btn" aria-label="Get it on Google Play">
-      <svg viewBox="0 0 24 24"><path d="M3.18 23.27c-.36-.17-.57-.52-.57-.94V1.67c0-.42.21-.77.57-.94l11.07 11.27L3.18 23.27zm1.4.52l12.18-6.94-2.72-2.77-9.46 9.71zm15.38-10.22c.35.2.56.54.56.93s-.21.73-.56.93l-2.38 1.36-2.97-3.03 2.97-3.03 2.38 1.36v.48zm-2.91-2.11L4.58.52l9.46 9.71 2.72-2.77-.71-.4z"/></svg>
-      Google Play
-    </a>
+    <a href="https://testflight.apple.com/join/XN7bTpZm" class="store-btn" target="_blank"><img src="../assets/images/app-store-badge.svg" alt="Download on the App Store"></a>
+    <a href="https://play.google.com/apps/testing/com.hawknesthammocks.gridless" class="store-btn" target="_blank"><img src="../assets/images/google-play-badge.png" alt="Get it on Google Play"></a>
   </div>
 </section>
 
@@ -587,14 +575,8 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
     <h2 class="gradient-text reveal">The Wilderness Doesn't Wait.<br>Neither Should You.</h2>
     <p class="section-sub reveal">Your survival journey starts with a single download.</p>
     <div class="store-buttons reveal">
-      <a href="#" class="store-btn" aria-label="Download on the App Store">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        App Store
-      </a>
-      <a href="#" class="store-btn" aria-label="Get it on Google Play">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3.18 23.27c-.36-.17-.57-.52-.57-.94V1.67c0-.42.21-.77.57-.94l11.07 11.27L3.18 23.27zm1.4.52l12.18-6.94-2.72-2.77-9.46 9.71zm15.38-10.22c.35.2.56.54.56.93s-.21.73-.56.93l-2.38 1.36-2.97-3.03 2.97-3.03 2.38 1.36v.48zm-2.91-2.11L4.58.52l9.46 9.71 2.72-2.77-.71-.4z"/></svg>
-        Google Play
-      </a>
+      <a href="https://testflight.apple.com/join/XN7bTpZm" class="store-btn" target="_blank"><img src="../assets/images/app-store-badge.svg" alt="Download on the App Store"></a>
+      <a href="https://play.google.com/apps/testing/com.hawknesthammocks.gridless" class="store-btn" target="_blank"><img src="../assets/images/google-play-badge.png" alt="Get it on Google Play"></a>
     </div>
   </div>
 </section>
