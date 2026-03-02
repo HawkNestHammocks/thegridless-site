@@ -746,11 +746,15 @@ const landingContent=document.getElementById('landingContent');
 const skipBtn=document.getElementById('skipQuiz');
 
 function showLanding(){
+  window.scrollTo(0,0);
+  document.documentElement.scrollTop=0;
+  document.body.scrollTop=0;
   document.body.style.overflow='';
   quizGate.style.transition='opacity .5s ease';
   quizGate.style.opacity='0';
   setTimeout(()=>{
     quizGate.style.display='none';
+    window.scrollTo(0,0);
     initReveals();
     initCounters();
     document.querySelectorAll('.stats-bar').forEach(el=>setTimeout(()=>el.classList.add('visible'),300));
