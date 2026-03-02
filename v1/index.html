@@ -55,7 +55,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .header-left{display:flex;align-items:center;gap:10px}
 .header-logo{width:36px;height:36px;border-radius:8px}
 .header-name{font-weight:800;font-size:1rem;color:#fff;letter-spacing:0.02em}
-.header-cta{background:var(--red);color:#fff;padding:10px 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.85rem;min-height:44px;display:flex;align-items:center;transition:all 0.2s;box-shadow:0 4px 15px rgba(192,57,43,0.3)}
+.header-cta{background:linear-gradient(135deg,var(--red-bright),var(--red-dark));color:#fff;padding:10px 22px;border-radius:50px;text-decoration:none;font-weight:700;font-size:0.85rem;min-height:44px;display:flex;align-items:center;transition:all 0.2s;box-shadow:0 4px 15px rgba(192,57,43,0.3)}
 .header-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(192,57,43,0.4)}
 
 /* Phone Mockup */
@@ -327,7 +327,8 @@ footer a:hover{text-decoration:underline}
 @keyframes shieldPulse{0%,100%{opacity:1;filter:drop-shadow(0 0 0 rgba(76,175,80,0.4))}50%{opacity:0.8;filter:drop-shadow(0 0 6px rgba(76,175,80,0.5))}}
 .live-bar .live-text{color:var(--dim)}
 .live-bar .live-text strong{color:#fff}
-.live-bar .live-cta{color:var(--red-bright);font-weight:700;text-decoration:none;white-space:nowrap}
+.live-bar .live-cta{background:linear-gradient(135deg,var(--red-bright),var(--red-dark));color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;padding:6px 14px;border-radius:50px;font-size:0.72rem;box-shadow:0 2px 10px rgba(192,57,43,0.3);transition:all 0.2s}
+.live-bar .live-cta:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(192,57,43,0.4)}
 
 /* Scroll Animations */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
@@ -375,7 +376,7 @@ footer a:hover{text-decoration:underline}
     <img src="../assets/images/app-icon.png" alt="Gridless" class="header-logo" width="36" height="36">
     <span class="header-name">Gridless</span>
   </div>
-  <a href="#download" class="header-cta">Download Free</a>
+  <a href="#download" class="header-cta">Get Prepared</a>
 </header>
 
 <!-- ===== FULLSCREEN QUIZ GATE ===== -->
