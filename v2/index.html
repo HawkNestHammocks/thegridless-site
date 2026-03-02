@@ -4,300 +4,456 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gridless — Master the Wild. Own Your Survival.</title>
-<meta name="description" content="Become the person who knows what to do. Structured survival learning paths, real progression, all offline.">
+<meta name="description" content="The survival knowledge app that turns you into the person everyone turns to in an emergency. 849 expert articles, 4,800+ quiz questions, 100% offline.">
 <meta property="og:title" content="Gridless — Master the Wild. Own Your Survival.">
-<meta property="og:description" content="Level up your outdoor and survival skills with structured learning paths — 100% offline.">
-<meta property="og:image" content="https://thegridless.com/assets/screenshots/journey-800.jpg">
+<meta property="og:description" content="The survival knowledge app that turns you into the person everyone turns to in an emergency.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://thegridless.com/v2/">
+<meta property="og:image" content="../assets/screenshots/journey-800.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="../assets/images/app-icon.png" type="image/png">
+<meta name="twitter:title" content="Gridless — Master the Wild. Own Your Survival.">
+<meta name="twitter:description" content="The survival knowledge app that turns you into the person everyone turns to in an emergency.">
+<meta name="twitter:image" content="../assets/screenshots/journey-800.jpg">
+<link rel="icon" href="../assets/images/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#242424;
-  --amber:#D4A94B;--amber-bright:#E8C76A;--amber-dark:#B8923A;
-  --amber-glow:rgba(212,169,75,0.2);
-  --cream:#F5E6C8;--dim:#C4B89A;--dimmer:#8a7e6a;--muted:#6b6358;
+--bg:#0d0d0d;--bg2:#1a1a1a;--bg3:#242424;
+--amber:#D4A94B;--orange:#E87D2F;--cream:#F5E6C8;--dim:#B8A88A;
+--grad:linear-gradient(135deg,var(--amber),var(--orange));
+--font-head:'Oswald',sans-serif;--font-body:'Inter',sans-serif;
 }
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--cream);font-family:var(--font-body);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--amber);text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-transform:uppercase}
+.container{max-width:1120px;margin:0 auto;padding:0 20px}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* ═══ HEADER ═══ */
-.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,13,13,0.88);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid rgba(212,169,75,0.1);padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.header-left{display:flex;align-items:center;gap:12px}
-.header-logo{width:40px;height:40px;border-radius:10px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
-.header-name{font-weight:800;font-size:1.1rem;color:#fff;letter-spacing:-0.01em}
-.header-cta{background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:#0d0d0d;padding:10px 22px;border-radius:12px;text-decoration:none;font-weight:700;font-size:0.85rem;min-height:48px;display:flex;align-items:center;transition:all 0.2s;box-shadow:0 2px 12px rgba(212,169,75,0.3)}
-.header-cta:hover{transform:scale(1.04);box-shadow:0 4px 20px rgba(212,169,75,0.4)}
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.slide-left{transform:translateX(-40px)}
+.reveal.slide-right{transform:translateX(40px)}
+.reveal.visible{opacity:1;transform:translate(0)}
 
-/* ═══ PHONE ═══ */
-.phone{position:relative;width:270px;margin:0 auto;background:#111;border-radius:44px;padding:14px;box-shadow:0 24px 80px rgba(0,0,0,0.7),0 0 60px var(--amber-glow),0 0 0 1px rgba(255,255,255,0.05)}
-.phone::before{content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#111;border-radius:0 0 14px 14px;z-index:3}
-.phone::after{content:'';position:absolute;top:20px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:rgba(255,255,255,0.08);border-radius:50%;z-index:4}
-.phone img{width:100%;border-radius:30px;display:block;position:relative;z-index:1}
+/* ===== STICKY HEADER ===== */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,13,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,169,75,.1);transition:box-shadow .3s}
+.site-header.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.5)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1120px;margin:0 auto;padding:0 20px}
+.header-brand{display:flex;align-items:center;gap:10px}
+.header-brand img{width:36px;height:36px;border-radius:10px}
+.header-brand span{font-family:var(--font-head);font-size:1.25rem;font-weight:600;color:var(--cream);text-transform:uppercase;letter-spacing:.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 28px;border-radius:50px;font-family:var(--font-body);font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-amber{background:var(--grad);color:#0d0d0d}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,169,75,.35)}
+.btn-outline{border:2px solid var(--amber);color:var(--amber);background:transparent}
+.btn-outline:hover{background:rgba(212,169,75,.1);transform:translateY(-2px)}
+.header-cta{font-size:.85rem;padding:10px 22px;min-height:44px}
 
-/* ═══ HERO ═══ */
-.hero{padding:100px 24px 72px;text-align:center;position:relative;min-height:100dvh;display:flex;flex-direction:column;justify-content:center}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:60%;background:radial-gradient(ellipse at 50% 20%,rgba(212,169,75,0.1) 0%,transparent 65%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(212,169,75,0.08);border:1px solid rgba(212,169,75,0.2);color:var(--amber-bright);padding:8px 18px;border-radius:100px;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px}
-.hero h1{font-size:clamp(2.2rem,7vw,3.8rem);font-weight:900;line-height:1.05;color:#fff;margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto;letter-spacing:-0.02em}
-.hero h1 span{background:linear-gradient(135deg,var(--amber),var(--amber-bright));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:clamp(1rem,2.5vw,1.15rem);color:var(--dim);max-width:500px;margin:0 auto 36px;line-height:1.7}
-.hero .phone{margin-bottom:44px}
-.store-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.store-btn{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:600;font-size:0.9rem;min-height:52px;transition:all 0.25s;backdrop-filter:blur(8px)}
-.store-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.1);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+/* ===== PHONE MOCKUP ===== */
+.phone{position:relative;width:260px;margin:0 auto;flex-shrink:0}
+.phone-frame{position:relative;background:#111;border:3px solid #333;border-radius:36px;padding:12px 10px;box-shadow:0 25px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05) inset}
+.phone-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:80px;height:22px;background:#111;border-radius:0 0 14px 14px;z-index:2}
+.phone-screen{border-radius:24px;overflow:hidden;position:relative}
+.phone-screen img{width:100%;display:block}
+.phone-glow{position:absolute;inset:-20%;background:radial-gradient(circle,rgba(212,169,75,.12) 0%,transparent 70%);pointer-events:none;z-index:-1}
+
+/* ===== HERO ===== */
+.hero{padding:100px 0 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:radial-gradient(ellipse at 50% 0%,rgba(232,125,47,.06) 0%,transparent 60%);pointer-events:none}
+.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:40px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.5rem);letter-spacing:-1px;margin-bottom:12px}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--dim);max-width:520px;margin:0 auto 28px}
+.store-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.store-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 24px;min-height:52px;color:var(--cream);font-weight:500;font-size:.9rem;transition:border-color .2s,transform .2s}
+.store-btn:hover{border-color:var(--amber);transform:translateY(-2px)}
 .store-btn svg{width:22px;height:22px;fill:currentColor}
 
-/* ═══ PATH ═══ */
-.path{padding:80px 24px 88px;background:var(--bg2);position:relative}
-.path::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,169,75,0.2),transparent)}
-.path-inner{max-width:940px;margin:0 auto;text-align:center}
-.section-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--amber);font-weight:700;margin-bottom:12px}
-.path h2{font-size:clamp(1.5rem,4vw,2.3rem);font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-0.01em}
-.path-desc{color:var(--dim);max-width:520px;margin:0 auto 52px;font-size:1rem;line-height:1.6}
-.path-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
-.path-steps::before{content:'';position:absolute;top:52px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,rgba(212,169,75,0.2),rgba(212,169,75,0.2),transparent);z-index:0}
-.path-step{background:var(--bg);border:1px solid rgba(212,169,75,0.1);border-radius:18px;padding:32px 20px 28px;text-align:center;position:relative;z-index:1;transition:transform 0.3s,box-shadow 0.3s}
-.path-step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
-.path-step-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,rgba(212,169,75,0.15),rgba(212,169,75,0.05));color:var(--amber);font-weight:900;font-size:1.1rem;margin-bottom:16px;border:1px solid rgba(212,169,75,0.2)}
-.path-step h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px}
-.path-step p{color:var(--dim);font-size:0.85rem;line-height:1.5}
+/* ===== STATS BAR ===== */
+.stats{padding:48px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat-num{font-family:var(--font-head);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.85rem;color:var(--dim);margin-top:4px}
 
-/* ═══ FEATURES ═══ */
-.features{padding:80px 24px 88px;position:relative}
-.features-inner{max-width:940px;margin:0 auto}
-.features h2{text-align:center;font-size:clamp(1.5rem,4vw,2.3rem);font-weight:800;color:#fff;margin-bottom:52px;letter-spacing:-0.01em}
-.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.feature-cards{display:flex;flex-direction:column;gap:14px}
-.f-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.05);border-radius:16px;padding:24px;transition:transform 0.3s,border-color 0.3s}
-.f-card:hover{transform:translateX(4px);border-color:rgba(212,169,75,0.15)}
-.f-card h3{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:10px}
-.f-card h3 span{font-size:1.2rem}
-.f-card p{color:var(--dim);font-size:0.85rem;line-height:1.6}
+/* ===== YOUR PATH ===== */
+.path{padding:80px 0}
+.section-title{text-align:center;font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:12px}
+.section-sub{text-align:center;color:var(--dim);max-width:560px;margin:0 auto 48px;font-size:1rem}
+.path-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.path-steps::before{content:'';position:absolute;top:44px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,var(--amber),var(--orange),transparent);z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--grad);color:#0d0d0d;font-family:var(--font-head);font-size:1.5rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 20px rgba(212,169,75,.3)}
+.step-title{font-family:var(--font-head);font-size:1.05rem;color:var(--cream);margin-bottom:6px;text-transform:uppercase}
+.step-desc{font-size:.85rem;color:var(--dim);line-height:1.5}
 
-/* ═══ TESTIMONIALS ═══ */
-.testimonials{padding:80px 24px 88px;background:var(--bg2);position:relative}
-.testimonials::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent)}
-.testimonials-inner{max-width:900px;margin:0 auto;text-align:center}
-.testimonials h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:8px}
-.test-note{color:var(--dimmer);font-size:0.78rem;margin-bottom:44px;text-transform:uppercase;letter-spacing:0.06em}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.test-card{background:var(--bg);border:1px solid rgba(255,255,255,0.05);border-radius:18px;padding:28px 24px;text-align:left;position:relative}
-.test-card::before{content:'"';position:absolute;top:16px;left:20px;font-size:3rem;color:rgba(212,169,75,0.15);font-family:Georgia,serif;line-height:1}
-.test-card p{color:var(--dim);font-size:0.9rem;line-height:1.65;font-style:italic;margin-bottom:16px;padding-top:20px}
-.test-card .author{color:var(--dimmer);font-size:0.78rem;font-style:normal;font-weight:600;letter-spacing:0.02em}
+/* ===== FEATURE CARDS ===== */
+.features{padding:80px 0;background:var(--bg2)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{background:var(--bg3);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:32px 24px;transition:transform .3s,border-color .3s}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(212,169,75,.25)}
+.feature-icon{font-size:2rem;margin-bottom:14px}
+.feature-card h3{font-size:1.1rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.feature-card p{font-size:.9rem;color:var(--dim);line-height:1.55}
 
-/* ═══ FAQ ═══ */
-.faq{padding:80px 24px 88px;position:relative}
-.faq-inner{max-width:720px;margin:0 auto}
-.faq h2{text-align:center;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;color:#fff;margin-bottom:44px;letter-spacing:-0.01em}
-.faq-item{border-bottom:1px solid rgba(255,255,255,0.06)}
-.faq-item input{display:none}
-.faq-item label{display:flex;align-items:center;justify-content:space-between;padding:22px 0;cursor:pointer;font-weight:600;color:#fff;font-size:0.95rem;min-height:52px;user-select:none;gap:16px;-webkit-tap-highlight-color:transparent}
-.faq-item label::after{content:'+';font-size:1.5rem;color:var(--dimmer);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);flex-shrink:0;width:24px;text-align:center}
-.faq-item input:checked+label::after{transform:rotate(45deg);color:var(--amber)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);color:var(--dim);font-size:0.9rem;line-height:1.7}
-.faq-item input:checked~.faq-answer{max-height:300px;padding-bottom:22px}
+/* ===== APP SHOWCASE ===== */
+.showcase{padding:80px 0}
+.showcase-inner{display:flex;align-items:center;gap:60px}
+.showcase-text{flex:1}
+.showcase-text h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:20px}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:14px}
+.checklist li{display:flex;align-items:flex-start;gap:12px;font-size:1rem;color:var(--cream)}
+.checklist li::before{content:'✓';flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(212,169,75,.15);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
 
-/* ═══ FINAL CTA ═══ */
-.final-cta{padding:80px 24px 88px;text-align:center;position:relative;overflow:hidden}
-.final-cta::before{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:radial-gradient(ellipse at 50% 100%,rgba(212,169,75,0.08) 0%,transparent 65%);pointer-events:none}
-.final-cta .phone{margin-bottom:44px;position:relative}
-.final-cta h2{font-size:clamp(1.5rem,4vw,2.3rem);font-weight:900;color:#fff;margin-bottom:14px;position:relative;letter-spacing:-0.01em}
-.final-cta p{color:var(--dim);margin-bottom:36px;font-size:1rem;position:relative;line-height:1.6}
+/* ===== BADGES ===== */
+.badges{padding:80px 0;background:var(--bg2)}
+.badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:640px;margin:0 auto}
+.badge-item{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.badge-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,rgba(212,169,75,.15),rgba(232,125,47,.15));border:2px solid rgba(212,169,75,.3);display:flex;align-items:center;justify-content:center;font-size:1.8rem;transition:transform .3s,box-shadow .3s}
+.badge-item:hover .badge-circle{transform:scale(1.1);box-shadow:0 0 24px rgba(212,169,75,.25)}
+.badge-name{font-family:var(--font-head);font-size:.78rem;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
 
-.footer{padding:48px 24px;text-align:center;border-top:1px solid rgba(255,255,255,0.05);color:var(--dimmer);font-size:0.8rem}
+/* ===== TESTIMONIALS ===== */
+.testimonials{padding:80px 0}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:28px 24px}
+.testi-label{display:inline-block;font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--amber);border:1px solid rgba(212,169,75,.3);border-radius:50px;padding:4px 12px;margin-bottom:16px}
+.testi-card blockquote{font-size:.95rem;color:var(--cream);font-style:italic;line-height:1.6;margin-bottom:16px}
+.testi-author{font-size:.85rem;color:var(--dim)}
 
-/* ═══ ANIMATIONS ═══ */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s cubic-bezier(0.4,0,0.2,1),transform 0.8s cubic-bezier(0.4,0,0.2,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* ===== FAQ ===== */
+.faq{padding:80px 0;background:var(--bg2)}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{background:var(--bg3);border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+.faq-item input[type="checkbox"]{display:none}
+.faq-item label{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;cursor:pointer;font-family:var(--font-head);font-size:1.05rem;color:var(--cream);text-transform:uppercase;letter-spacing:.3px;min-height:56px;-webkit-tap-highlight-color:transparent;user-select:none}
+.faq-item label::after{content:'+';font-size:1.4rem;color:var(--amber);transition:transform .3s;flex-shrink:0;margin-left:12px}
+.faq-item input:checked ~ label::after{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item input:checked ~ .faq-answer{max-height:300px}
+.faq-answer p{padding:0 24px 20px;font-size:.9rem;color:var(--dim);line-height:1.65}
 
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:430px){
-  .hero{padding:88px 20px 60px}
-  .hero h1{font-size:2.2rem}
-  .phone{width:240px}
-  .path-steps{grid-template-columns:1fr;gap:12px;max-width:340px;margin:0 auto}
+/* ===== FINAL CTA ===== */
+.final-cta{padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:radial-gradient(ellipse at 50% 100%,rgba(232,125,47,.06) 0%,transparent 70%);pointer-events:none}
+.final-cta h2{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:16px}
+.final-cta .section-sub{margin-bottom:40px}
+.final-cta .phone{margin-bottom:40px}
+
+/* ===== FOOTER ===== */
+.footer{padding:32px 0;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+.footer p{font-size:.85rem;color:var(--dim)}
+.footer a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
+.footer a:hover{color:var(--amber)}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px 12px}
+  .path-steps{grid-template-columns:repeat(2,1fr);gap:32px 20px}
   .path-steps::before{display:none}
-  .feature-row{grid-template-columns:1fr;gap:32px}
-  .feature-row .phone{order:-1}
-  .test-grid{grid-template-columns:1fr;gap:12px}
-  .store-btn{padding:14px 22px;font-size:0.85rem}
+  .features-grid{grid-template-columns:1fr}
+  .showcase-inner{flex-direction:column;text-align:center}
+  .showcase .phone{order:-1}
+  .checklist li{justify-content:center}
+  .badges-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+  .testi-grid{grid-template-columns:1fr}
+  .phone{width:220px}
 }
-@media(min-width:431px) and (max-width:768px){
-  .hero{padding:100px 24px 68px}
-  .path-steps{grid-template-columns:1fr 1fr 1fr;gap:12px}
-  .feature-row{grid-template-columns:1fr;gap:40px}
-  .feature-row .phone{order:-1;margin:0 auto}
-  .test-grid{grid-template-columns:1fr 1fr;gap:12px}
-}
-@media(max-width:350px){
-  .phone{width:210px;border-radius:36px;padding:10px}
-  .phone::before{width:76px;height:22px;top:10px}
-  .phone img{border-radius:26px}
-  .hero h1{font-size:1.9rem}
+@media(max-width:480px){
+  .badges-grid{grid-template-columns:repeat(2,1fr)}
+  .path-steps{grid-template-columns:1fr;max-width:280px;margin:0 auto}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ HEADER ═══ -->
-<header class="header">
-  <div class="header-left">
-    <img src="../assets/images/app-icon.png" alt="Gridless" class="header-logo" width="40" height="40">
-    <span class="header-name">Gridless</span>
+<!-- HEADER -->
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a href="#" class="header-brand">
+      <img src="../assets/images/app-icon.png" alt="Gridless" width="36" height="36">
+      <span>Gridless</span>
+    </a>
+    <a href="#download" class="btn btn-amber header-cta">Start Your Journey</a>
   </div>
-  <a href="#download" class="header-cta">Get Early Access</a>
 </header>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-badge">🏔️ Outdoor Mastery</div>
-  <h1>Master the Wild.<br><span>Own Your Survival.</span></h1>
-  <p class="hero-sub">Become the person who knows exactly what to do — in any outdoor situation. Structured skill paths, real progression, all offline.</p>
-  <div class="phone reveal">
-    <img src="../assets/screenshots/journey-800.jpg" alt="Gridless journey — worlds, XP, streaks, level progression" width="242" height="524" loading="eager">
-  </div>
-  <div style="height:36px"></div>
-  <div class="store-buttons" id="download">
-    <a href="#" class="store-btn"><svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg> App Store</a>
-    <a href="#" class="store-btn"><svg viewBox="0 0 24 24"><path d="M3.18 23.67L14.31 12.5 3.18.33c-.36.22-.58.62-.58 1.08v21.18c0 .46.22.86.58 1.08zm1.44.88L16.35 13.9l-2.73-2.73L4.62 24.55zm14.96-10.72l-3.64-2.08-2.97 2.97 2.97 2.97 3.64-2.08c.67-.38.67-1.4 0-1.78zM4.62-.55l9 13.38 2.73-2.73L4.62-.55z"/></svg> Google Play</a>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div>
+      <h1 class="gradient-text">Master the Wild.<br>Own Your Survival.</h1>
+      <p class="hero-sub">Become the person everyone turns to in an emergency. Real survival knowledge, gamified learning, zero fluff — all offline.</p>
+      <div class="store-buttons" id="download">
+        <a href="#" class="store-btn" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a href="#" class="store-btn" aria-label="Get it on Google Play">
+          <svg viewBox="0 0 24 24"><path d="M3.18 23.27c-.36-.17-.57-.52-.57-.94V1.67c0-.42.21-.77.57-.94l11.07 11.27L3.18 23.27zm1.4.52l12.18-6.94-2.72-2.77-9.46 9.71zm15.38-10.22c.35.2.56.54.56.93s-.21.73-.56.93l-2.38 1.36-2.97-3.03 2.97-3.03 2.38 1.36v.48zm-2.91-2.11L4.58.52l9.46 9.71 2.72-2.77-.71-.4z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+    <div class="phone reveal">
+      <div class="phone-glow"></div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <img src="../assets/screenshots/journey-800.jpg" alt="Gridless Journey tab showing learning worlds, XP progress, and streaks" width="260" height="563" loading="eager">
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══ PATH ═══ -->
-<section class="path reveal">
-  <div class="path-inner">
-    <div class="section-label">Your Path to Mastery</div>
-    <h2>From Beginner to Survival Expert</h2>
-    <p class="path-desc">Gridless breaks outdoor knowledge into focused worlds. Start where you are, level up at your own pace.</p>
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div><div class="stat-num">849</div><div class="stat-label">Expert Articles</div></div>
+      <div><div class="stat-num">4,800+</div><div class="stat-label">Quiz Questions</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Offline Access</div></div>
+      <div><div class="stat-num">Free</div><div class="stat-label">No Paywalls</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUR PATH -->
+<section class="path">
+  <div class="container">
+    <h2 class="section-title gradient-text reveal">Your Path to Readiness</h2>
+    <p class="section-sub reveal">Four steps. One mission. Be ready for anything.</p>
     <div class="path-steps">
-      <div class="path-step">
-        <div class="path-step-num">1</div>
-        <h3>Recreational Camping</h3>
-        <p>Master campsite selection, fire-building, navigation basics, outdoor cooking, and Leave No Trace principles.</p>
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-title">Pick Your World</div>
+        <div class="step-desc">Wilderness, Urban, Medical, or Disaster — start where it matters most to you.</div>
       </div>
-      <div class="path-step">
-        <div class="path-step-num">2</div>
-        <h3>Wilderness Survival</h3>
-        <p>Shelter construction, water purification, foraging edibles, orienteering, and signaling for rescue.</p>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-title">Read Expert Guides</div>
+        <div class="step-desc">849 articles written by professionals. No filler, no fluff — just actionable knowledge.</div>
       </div>
-      <div class="path-step">
-        <div class="path-step-num">3</div>
-        <h3>Disaster Readiness</h3>
-        <p>Emergency protocols, trauma first aid, urban survival, family planning, and 72-hour preparedness kits.</p>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-title">Test Your Knowledge</div>
+        <div class="step-desc">4,800+ quiz questions that challenge you and lock in what you've learned.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-title">Be Ready for Anything</div>
+        <div class="step-desc">Earn badges, build streaks, and become the person others count on.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FEATURES ═══ -->
-<section class="features reveal">
-  <div class="features-inner">
-    <h2>Everything You Need in Your Pocket</h2>
-    <div class="feature-row">
-      <div class="feature-cards">
-        <div class="f-card">
-          <h3><span>📖</span> Field Manual</h3>
-          <p>350+ articles covering everything from knot-tying to emergency water treatment. All stored offline on your device.</p>
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <h2 class="section-title gradient-text reveal">Everything You Need</h2>
+    <p class="section-sub reveal">Built for learners, designed for survivors.</p>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">📖</div>
+        <h3>Field Manual</h3>
+        <p>849 survival articles covering fire, water, shelter, navigation, first aid, signaling, and more. All written by experts.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🧠</div>
+        <h3>Gamified Quizzes</h3>
+        <p>4,800+ questions across difficulty levels. Earn XP, track streaks, and actually retain what you read.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">📡</div>
+        <h3>Offline Access</h3>
+        <p>Every article, every quiz, every tool — available with zero signal. Because emergencies don't wait for Wi-Fi.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🧭</div>
+        <h3>Survival Tools</h3>
+        <p>Built-in compass, flashlight, SOS signal, and checklists. Your phone becomes your most valuable survival tool.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🌍</div>
+        <h3>4 Learning Worlds</h3>
+        <p>Wilderness, Urban Survival, Medical Emergencies, and Natural Disasters. Each world has its own progression path.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🏆</div>
+        <h3>Achievement System</h3>
+        <p>Unlock badges as you master new skills. Track your journey from beginner to survival expert.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP SHOWCASE -->
+<section class="showcase">
+  <div class="container">
+    <div class="showcase-inner">
+      <div class="showcase-text reveal slide-left">
+        <h2 class="gradient-text">Your Complete Survival Command Center</h2>
+        <p style="color:var(--dim);margin-bottom:24px">Everything organized. Nothing buried. Open the app and know exactly where to go.</p>
+        <ul class="checklist">
+          <li>Quick-access Field Manual with smart search</li>
+          <li>Emergency guides for critical situations</li>
+          <li>Daily learning streaks to build consistency</li>
+          <li>Progress tracking across all four worlds</li>
+          <li>Survival tools one tap away</li>
+        </ul>
+      </div>
+      <div class="phone reveal slide-right">
+        <div class="phone-glow"></div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="../assets/screenshots/home-800.jpg" alt="Gridless Home tab with Field Manual and Emergency access" width="260" height="563" loading="lazy">
+          </div>
         </div>
-        <div class="f-card">
-          <h3><span>🎯</span> Daily Drills</h3>
-          <p>Quick challenges that reinforce what you've learned. Build real muscle memory in just minutes a day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BADGES -->
+<section class="badges">
+  <div class="container">
+    <h2 class="section-title gradient-text reveal">Earn Your Badges</h2>
+    <p class="section-sub reveal">Master skills. Collect proof. Every badge is a survival milestone.</p>
+    <div class="badges-grid reveal">
+      <div class="badge-item"><div class="badge-circle">🔥</div><div class="badge-name">Fire Starter</div></div>
+      <div class="badge-item"><div class="badge-circle">💧</div><div class="badge-name">Water Expert</div></div>
+      <div class="badge-item"><div class="badge-circle">🧭</div><div class="badge-name">Navigation Pro</div></div>
+      <div class="badge-item"><div class="badge-circle">🩹</div><div class="badge-name">First Aid</div></div>
+      <div class="badge-item"><div class="badge-circle">🏕️</div><div class="badge-name">Shelter Builder</div></div>
+      <div class="badge-item"><div class="badge-circle">🌿</div><div class="badge-name">Forager</div></div>
+      <div class="badge-item"><div class="badge-circle">📡</div><div class="badge-name">Signal Master</div></div>
+      <div class="badge-item"><div class="badge-circle">⛈️</div><div class="badge-name">Disaster Ready</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title gradient-text reveal">What Early Testers Say</h2>
+    <p class="section-sub reveal">Real feedback from our beta testing community.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <span class="testi-label">Early Access</span>
+        <blockquote>"I've been into prepping for years but never found an app that actually teaches instead of just selling gear. The quiz system is addictive — I've learned more in two weeks than the past year."</blockquote>
+        <div class="testi-author">— Beta tester, outdoor enthusiast</div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="testi-label">Early Access</span>
+        <blockquote>"Took it camping with zero signal last weekend. Having the full field manual offline was a game changer. My kids loved the quizzes around the campfire."</blockquote>
+        <div class="testi-author">— Beta tester, parent & camper</div>
+      </div>
+      <div class="testi-card reveal">
+        <span class="testi-label">Early Access</span>
+        <blockquote>"The progression system keeps me coming back. I'm halfway through the Wilderness world and I genuinely feel more confident about handling unexpected situations."</blockquote>
+        <div class="testi-author">— Beta tester, hiking beginner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="section-title gradient-text reveal">Frequently Asked Questions</h2>
+    <p class="section-sub reveal">Everything you want to know before downloading.</p>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <input type="checkbox" id="faq1">
+        <label for="faq1">Is Gridless really free?</label>
+        <div class="faq-answer"><p>Yes. All 849 articles, 4,800+ quiz questions, and survival tools are completely free. No subscriptions, no paywalls, no hidden costs. We believe survival knowledge should be accessible to everyone.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <input type="checkbox" id="faq2">
+        <label for="faq2">Does it work offline?</label>
+        <div class="faq-answer"><p>100%. Every article, quiz, and tool works without an internet connection. The entire knowledge base is stored locally on your device. Because when you need survival info most, you probably won't have Wi-Fi.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <input type="checkbox" id="faq3">
+        <label for="faq3">Who writes the content?</label>
+        <div class="faq-answer"><p>Our articles are researched and written using established survival manuals, military field guides, and expert outdoor education resources. Every piece is reviewed for accuracy and practical applicability.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <input type="checkbox" id="faq4">
+        <label for="faq4">What are the four learning worlds?</label>
+        <div class="faq-answer"><p>Wilderness Survival covers fire, water, shelter, and navigation in the wild. Urban Survival deals with city emergencies and self-reliance. Medical Emergencies teaches first aid and trauma response. Natural Disasters prepares you for earthquakes, floods, storms, and more.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <input type="checkbox" id="faq5">
+        <label for="faq5">How much storage does it need?</label>
+        <div class="faq-answer"><p>The full app with all content takes up roughly 100–150 MB. That's less than most social media apps — and infinitely more useful when it counts.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <input type="checkbox" id="faq6">
+        <label for="faq6">Is it available on both iOS and Android?</label>
+        <div class="faq-answer"><p>Yes! Gridless is available on both the App Store and Google Play. Download it on any device and start building your survival knowledge today.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="phone reveal" style="width:230px">
+      <div class="phone-glow"></div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <img src="../assets/screenshots/onboarding-800.jpg" alt="Gridless onboarding screen" width="230" height="498" loading="lazy">
         </div>
-        <div class="f-card">
-          <h3><span>🔥</span> Streak Tracking</h3>
-          <p>Stay consistent. Your streak counter and XP system keep you motivated and progressing every day.</p>
-        </div>
-        <div class="f-card">
-          <h3><span>🛠️</span> Tools & Gear</h3>
-          <p>Expert-curated equipment guides for every scenario. Know exactly what to carry and why it matters.</p>
-        </div>
       </div>
-      <div class="phone">
-        <img src="../assets/screenshots/home-800.jpg" alt="Gridless home screen — Field Manual, Emergency banner, Daily Tip" width="242" height="524" loading="lazy">
-      </div>
+    </div>
+    <h2 class="gradient-text reveal">The Wilderness Doesn't Wait.<br>Neither Should You.</h2>
+    <p class="section-sub reveal">Your survival journey starts with a single download.</p>
+    <div class="store-buttons reveal">
+      <a href="#" class="store-btn" aria-label="Download on the App Store">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#" class="store-btn" aria-label="Get it on Google Play">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3.18 23.27c-.36-.17-.57-.52-.57-.94V1.67c0-.42.21-.77.57-.94l11.07 11.27L3.18 23.27zm1.4.52l12.18-6.94-2.72-2.77-9.46 9.71zm15.38-10.22c.35.2.56.54.56.93s-.21.73-.56.93l-2.38 1.36-2.97-3.03 2.97-3.03 2.38 1.36v.48zm-2.91-2.11L4.58.52l9.46 9.71 2.72-2.77-.71-.4z"/></svg>
+        Google Play
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="testimonials reveal">
-  <div class="testimonials-inner">
-    <div class="section-label">Early Access</div>
-    <h2>Beta Testers Say</h2>
-    <p class="test-note">Real feedback from our early access community</p>
-    <div class="test-grid">
-      <div class="test-card">
-        <p>I've been camping for years but Gridless taught me things I never knew. The structured approach actually works.</p>
-        <div class="author">— Early Access Tester</div>
-      </div>
-      <div class="test-card">
-        <p>Love that it works offline. Took it on a backcountry trip with zero signal and had my whole survival library right there.</p>
-        <div class="author">— Beta Tester</div>
-      </div>
-      <div class="test-card">
-        <p>The progression system is addictive. I find myself doing the daily drills every morning with my coffee.</p>
-        <div class="author">— Early Access Tester</div>
-      </div>
-    </div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 The Gridless. All rights reserved. &nbsp;·&nbsp; <a href="../privacy.html">Privacy Policy</a></p>
   </div>
-</section>
-
-<!-- ═══ FAQ ═══ -->
-<section class="faq reveal">
-  <div class="faq-inner">
-    <h2>Questions & Answers</h2>
-    <div class="faq-item">
-      <input type="checkbox" id="faq1">
-      <label for="faq1">Do I need outdoor experience?</label>
-      <div class="faq-answer">Nope. Gridless starts from the basics and builds up. Whether you've never pitched a tent or you're an experienced backcountry hiker, there's a path designed for your level.</div>
-    </div>
-    <div class="faq-item">
-      <input type="checkbox" id="faq2">
-      <label for="faq2">Does it work without internet?</label>
-      <div class="faq-answer">Yes — that's the core promise. All content is stored on your device. Works in airplane mode, deep in the backcountry, or during a power outage.</div>
-    </div>
-    <div class="faq-item">
-      <input type="checkbox" id="faq3">
-      <label for="faq3">How is this different from YouTube?</label>
-      <div class="faq-answer">YouTube requires internet and has no structure. Gridless gives you a curated, progressive curriculum that builds on itself — and it works offline, anywhere.</div>
-    </div>
-    <div class="faq-item">
-      <input type="checkbox" id="faq4">
-      <label for="faq4">Is Gridless free?</label>
-      <div class="faq-answer">Core content is free. We're finalizing pricing for premium features ahead of our full launch. Early access users will get the best offers.</div>
-    </div>
-    <div class="faq-item">
-      <input type="checkbox" id="faq5">
-      <label for="faq5">What platforms do you support?</label>
-      <div class="faq-answer">We're launching on both iOS and Android. Sign up for early access to be first to know when your platform is ready.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FINAL CTA ═══ -->
-<section class="final-cta reveal">
-  <div class="phone">
-    <img src="../assets/screenshots/onboarding-800.jpg" alt="Gridless onboarding — 350+ article Field Manual" width="242" height="524" loading="lazy">
-  </div>
-  <h2>Your Adventure Starts Here</h2>
-  <p>350+ articles. Structured worlds. Zero signal required.</p>
-  <div class="store-buttons">
-    <a href="#" class="store-btn"><svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg> App Store</a>
-    <a href="#" class="store-btn"><svg viewBox="0 0 24 24"><path d="M3.18 23.67L14.31 12.5 3.18.33c-.36.22-.58.62-.58 1.08v21.18c0 .46.22.86.58 1.08zm1.44.88L16.35 13.9l-2.73-2.73L4.62 24.55zm14.96-10.72l-3.64-2.08-2.97 2.97 2.97 2.97 3.64-2.08c.67-.38.67-1.4 0-1.78zM4.62-.55l9 13.38 2.73-2.73L4.62-.55z"/></svg> Google Play</a>
-  </div>
-</section>
-
-<footer class="footer"><p>© 2026 Gridless. All rights reserved.</p></footer>
+</footer>
 
 <script>
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
