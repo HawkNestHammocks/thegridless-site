@@ -129,7 +129,11 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .hero-text{flex:1;text-align:left}
 .hero-phone-right{flex-shrink:0;width:280px}
 .hero-phone-right .phone{width:100%}
-.hero-warn{display:inline-flex;align-items:center;gap:5px;background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.25);color:var(--red-bright);padding:5px 12px;border-radius:100px;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:16px;animation:pulse-badge 3s ease-in-out infinite}
+/* Alert bubble on phone */
+.alert-bubble{position:absolute;top:-10px;left:-16px;z-index:10;display:inline-flex;align-items:center;gap:5px;background:rgba(192,57,43,0.95);color:#fff;padding:6px 12px;border-radius:10px;font-size:0.68rem;font-weight:700;letter-spacing:0.03em;white-space:nowrap;box-shadow:0 4px 16px rgba(192,57,43,0.4);opacity:0;transform:scale(0.7) translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.alert-bubble::after{content:'';position:absolute;bottom:-5px;left:20px;width:10px;height:10px;background:rgba(192,57,43,0.95);transform:rotate(45deg);border-radius:2px}
+.alert-bubble.visible{opacity:1;transform:scale(1) translateY(0)}
+.hero-warn{display:none}
 @keyframes pulse-badge{0%,100%{opacity:1}50%{opacity:0.7}}
 /* Animations */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -325,10 +329,6 @@ footer a:hover{text-decoration:underline}
 
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-warn">
-        <img src="../assets/icons/emergency-icon.png" alt="Warning" class="rugged-icon-sm" style="width:18px;height:18px;vertical-align:middle">
-        60% of Americans are not prepared for an emergency
-      </div>
       <h2>When Disaster Strikes,<br><span>Will You Be Ready?</span></h2>
       <p class="hero-sub">Your phone is useless without signal — unless you have Gridless. 605 survival guides, emergency protocols, and real skills. All available offline.</p>
 
@@ -352,7 +352,10 @@ footer a:hover{text-decoration:underline}
     </div>
 
     <!-- Desktop: phone on right -->
-    <div class="hero-phone-right">
+    <div class="hero-phone-right" style="position:relative">
+      <div class="alert-bubble">
+        <img src="../assets/icons/emergency-icon.png" alt="" style="width:14px;height:14px"> 60% of Americans are unprepared
+      </div>
       <div class="phone phone-lg">
         <img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" style="width:100%;height:auto;border-radius:20px" loading="eager">
       </div>
@@ -360,7 +363,10 @@ footer a:hover{text-decoration:underline}
   </div>
 
   <!-- Mobile: prominent phone between headline and subtitle -->
-  <div class="hero-mobile-phone">
+  <div class="hero-mobile-phone" style="position:relative">
+    <div class="alert-bubble">
+      <img src="../assets/icons/emergency-icon.png" alt="" style="width:14px;height:14px"> 60% of Americans are unprepared
+    </div>
     <img src="../assets/screenshots/home-latest.png" alt="Gridless home screen" loading="eager">
   </div>
   <p class="hero-mobile-sub">Your phone is useless without signal — unless you have Gridless. 605 survival guides, emergency protocols, and real skills. All available offline.</p>
@@ -595,6 +601,10 @@ window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.
 // Scroll reveal
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 function initReveals(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el))}
+
+// Alert bubbles — pop in when phone scrolls into view
+const bubbleObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const b=e.target.querySelector('.alert-bubble');if(b)setTimeout(()=>b.classList.add('visible'),600);bubbleObs.unobserve(e.target)}})},{threshold:0.3});
+document.querySelectorAll('.hero-mobile-phone,.hero-phone-right').forEach(el=>bubbleObs.observe(el));
 
 // ===== QUIZ GATE LOGIC =====
 const quizGate=document.getElementById('quizGate');
