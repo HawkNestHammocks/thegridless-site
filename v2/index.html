@@ -62,12 +62,23 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .phone-glow{position:absolute;inset:-20%;background:radial-gradient(circle,rgba(212,169,75,.12) 0%,transparent 70%);pointer-events:none;z-index:-1}
 
 /* ===== HERO ===== */
-.hero{padding:100px 0 60px;position:relative;overflow:hidden}
+.hero{padding:80px 0 60px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:radial-gradient(ellipse at 50% 0%,rgba(232,125,47,.06) 0%,transparent 60%);pointer-events:none}
-.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:40px}
-.hero h1{font-size:clamp(2.4rem,7vw,4.5rem);letter-spacing:-1px;margin-bottom:12px}
-.hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--dim);max-width:520px;margin:0 auto 28px}
-.store-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-inner{display:flex;align-items:center;text-align:left;gap:40px}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-1px;margin-bottom:12px}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--dim);max-width:520px;margin:0 0 28px}
+.store-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.hero-bg-phone{display:none}
+@media(max-width:699px){
+.hero-inner{flex-direction:column;text-align:center}
+.hero-sub{margin-left:auto;margin-right:auto}
+.store-buttons{justify-content:center}
+.hero-inner>.phone{display:none}
+.hero-bg-phone{display:block;position:absolute;right:-60px;top:50%;transform:translateY(-50%) rotate(5deg);width:260px;opacity:0.15;z-index:0;pointer-events:none}
+}
+@media(min-width:700px){
+.hero-inner>.phone{flex-shrink:0;width:280px}
+}
 .store-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 24px;min-height:52px;color:var(--cream);font-weight:500;font-size:.9rem;transition:border-color .2s,transform .2s}
 .store-btn:hover{border-color:var(--amber);transform:translateY(-2px)}
 .store-btn svg{width:22px;height:22px;fill:currentColor}
@@ -184,6 +195,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 
 <!-- HERO -->
 <section class="hero" id="top">
+  <img src="../assets/screenshots/home-latest.png" alt="" class="hero-bg-phone" aria-hidden="true">
   <div class="container hero-inner">
     <div>
       <h1 class="gradient-text">Master the Wild.<br>Own Your Survival.</h1>
