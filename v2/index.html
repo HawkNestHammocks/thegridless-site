@@ -145,27 +145,43 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .feature-card h3{font-size:1.1rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
 .feature-card p{font-size:.9rem;color:var(--dim);line-height:1.55}
 
-/* ===== SCENARIO CHALLENGE ===== */
-.scenario{padding:60px 0;background:linear-gradient(180deg,var(--bg),#1a1008,var(--bg));position:relative;text-align:center}
-.scenario::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(232,125,47,0.08),transparent 60%)}
-.scenario-card{max-width:520px;margin:0 auto;background:var(--bg3);border:2px solid rgba(232,125,47,0.2);border-radius:20px;padding:24px 20px;position:relative;z-index:1}
-.scenario-card .sc-label{display:inline-flex;align-items:center;gap:6px;background:rgba(232,125,47,0.12);color:var(--orange);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:5px 12px;border-radius:50px;margin-bottom:10px}
-.scenario-card .sc-label .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:scPulse 2s infinite}
-@keyframes scPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.scenario-card h3{font-family:var(--font-head);font-size:1.1rem;color:#fff;text-transform:uppercase;margin-bottom:6px}
-.scenario-card .sc-q{color:var(--dim);font-size:.9rem;line-height:1.5;margin-bottom:14px}
-.sc-opts{display:flex;flex-direction:column;gap:8px}
-.sc-opt{background:var(--bg2);border:2px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:.85rem;color:var(--cream);transition:all .25s;text-align:left;font-weight:500}
-.sc-opt:hover{border-color:rgba(232,125,47,0.3);background:rgba(232,125,47,0.05)}
-.sc-opt.correct{border-color:#4CAF50;background:rgba(76,175,80,0.1);color:#4CAF50}
-.sc-opt.wrong{border-color:#C0392B;background:rgba(192,57,43,0.1);color:#C0392B;opacity:.6}
-.sc-opt.disabled{pointer-events:none}
-.sc-result{display:none;margin-top:14px;padding:14px;border-radius:12px;text-align:center}
-.sc-result.show{display:block;animation:fadeUp .4s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.sc-result h4{font-family:var(--font-head);font-size:1.1rem;text-transform:uppercase;margin-bottom:8px}
-.sc-result p{color:var(--dim);font-size:.88rem;line-height:1.5;margin-bottom:16px}
-.sc-result .btn{font-size:.85rem;padding:10px 20px}
+/* ===== QUIZ GATE ===== */
+.v2-gate{position:fixed;inset:0;z-index:200;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px 20px;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,#1a1008 40%,#150d05 70%,var(--bg) 100%)}
+.v2-gate::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(232,125,47,0.1),transparent 60%)}
+.v2-gate>*{position:relative;z-index:2}
+.v2-gate .g-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,125,47,0.12);border:1px solid rgba(232,125,47,0.25);color:var(--orange);padding:7px 16px;border-radius:100px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px}
+.v2-gate .g-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:gPulse 2s infinite}
+@keyframes gPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.v2-gate h1{font-family:var(--font-head);font-size:clamp(1.5rem,5vw,2.6rem);color:#fff;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.v2-gate h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.v2-gate .g-sub{color:var(--dim);font-size:0.9rem;margin-bottom:24px;max-width:460px}
+.g-card{max-width:520px;width:100%;background:var(--bg2);border:1px solid rgba(232,125,47,0.2);border-radius:16px;padding:22px 18px;text-align:left}
+.g-progress{display:flex;gap:5px;margin-bottom:20px}
+.g-dot{height:4px;flex:1;border-radius:4px;background:var(--bg3);transition:background 0.3s}
+.g-dot.active{background:var(--orange)}
+.g-dot.done{background:#4CAF50}
+.g-question{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;line-height:1.35}
+.g-opts{display:flex;flex-direction:column;gap:7px}
+.g-opt{background:var(--bg3);border:2px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:0.88rem;color:var(--cream);transition:all 0.2s;min-height:44px;display:flex;align-items:center}
+.g-opt:hover{border-color:rgba(255,255,255,0.2);background:var(--bg)}
+.g-opt.selected{border-color:var(--orange);background:rgba(232,125,47,0.1)}
+.g-result{display:none;text-align:center;padding-top:10px}
+.g-result.show{display:block}
+.g-result h3{font-family:var(--font-head);font-size:1.3rem;color:#fff;text-transform:uppercase;margin-bottom:6px}
+.g-result .g-verdict{color:var(--dim);font-size:0.9rem;line-height:1.6;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto}
+.g-result .g-verdict strong{color:var(--orange)}
+.g-skip{margin-top:18px;color:var(--dim);font-size:0.78rem;cursor:pointer;background:none;border:none;text-decoration:underline;transition:color 0.2s;font-family:inherit}
+.g-skip:hover{color:var(--cream)}
+.v2-gate.result-mode h1,.v2-gate.result-mode .g-sub{display:none}
+
+/* Live bar */
+.live-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(212,169,75,0.2);padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:12px;transform:translateY(100%);transition:transform .4s ease;font-size:0.78rem}
+.live-bar.show{transform:translateY(0)}
+.live-bar .live-dot{width:8px;height:8px;border-radius:50%;background:#4CAF50;animation:livePulse 1.5s infinite;flex-shrink:0}
+@keyframes livePulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(76,175,80,0.4)}50%{opacity:0.8;box-shadow:0 0 0 6px rgba(76,175,80,0)}}
+.live-bar .live-text{color:var(--dim)}
+.live-bar .live-text strong{color:#fff}
+.live-bar .live-cta{color:var(--orange);font-weight:700;text-decoration:none;white-space:nowrap}
 
 /* ===== APP SHOWCASE ===== */
 .showcase{padding:80px 0}
@@ -240,6 +256,28 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 </style>
 </head>
 <body>
+
+<!-- ===== QUIZ GATE ===== -->
+<section class="v2-gate" id="v2Gate">
+  <div class="g-badge"><span class="pulse"></span> Limited Early Access</div>
+  <h1>Prove You're <span>Ready</span></h1>
+  <p class="g-sub">Gridless isn't for everyone. Answer 3 quick questions to unlock access.</p>
+  <div class="g-card" id="gCard">
+    <div class="g-progress">
+      <div class="g-dot" id="gd0"></div>
+      <div class="g-dot" id="gd1"></div>
+      <div class="g-dot" id="gd2"></div>
+    </div>
+    <div class="g-question" id="gQ"></div>
+    <div class="g-opts" id="gOpts"></div>
+  </div>
+  <div class="g-result" id="gResult">
+    <h3 id="gTitle"></h3>
+    <p class="g-verdict" id="gVerdict"></p>
+    <a href="#" class="btn btn-amber" id="gCTA">Claim Your Access →</a>
+  </div>
+  <button class="g-skip" id="gSkip">Skip — just show me the app →</button>
+</section>
 
 <!-- HEADER -->
 <header class="site-header" id="header">
@@ -392,30 +430,6 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
         <img src="../assets/icons/tools-icon.png" alt="Achievements" class="rugged-icon">
         <h3>Achievement System</h3>
         <p>Unlock badges as you master new skills. Track your journey from beginner to survival expert.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SCENARIO CHALLENGE -->
-<section class="scenario">
-  <div class="container reveal">
-    <div class="section-title gradient-text" style="margin-bottom:8px">Can You Survive This?</div>
-    <p class="section-sub">Real scenario. One right answer. Let's see what you've got.</p>
-    <div class="scenario-card" id="scenarioCard">
-      <div class="sc-label"><span class="pulse"></span> Survival Scenario</div>
-      <h3 id="scTitle">Lost in the Wilderness</h3>
-      <p class="sc-q" id="scQuestion">You're hiking alone and realize you've been off-trail for 3 hours. Your phone is dead. The sun is setting in 90 minutes. What's your FIRST priority?</p>
-      <div class="sc-opts" id="scOpts">
-        <div class="sc-opt" data-idx="0" onclick="pickScenario(this,0)">Keep walking — you'll find the trail eventually</div>
-        <div class="sc-opt" data-idx="1" onclick="pickScenario(this,1)">Stop. Find or build shelter before dark</div>
-        <div class="sc-opt" data-idx="2" onclick="pickScenario(this,2)">Start a signal fire immediately</div>
-        <div class="sc-opt" data-idx="3" onclick="pickScenario(this,3)">Climb the highest tree to look around</div>
-      </div>
-      <div class="sc-result" id="scResult">
-        <h4 id="scResultTitle"></h4>
-        <p id="scResultText"></p>
-        <a href="#download" class="btn btn-amber" style="font-size:.82rem;padding:8px 18px" onclick="event.preventDefault();document.getElementById('download').scrollIntoView({behavior:'smooth',block:'center'})">Learn More Scenarios in Gridless →</a>
       </div>
     </div>
   </div>
@@ -585,8 +599,15 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
   </div>
 </section>
 
+<!-- Live Activity Bar -->
+<div class="live-bar" id="liveBar">
+  <span class="live-dot"></span>
+  <span class="live-text"><strong id="liveCount">312</strong> people learning right now</span>
+  <a href="#download" class="live-cta" onclick="event.preventDefault();document.getElementById('download').scrollIntoView({behavior:'smooth',block:'center'})">Join them →</a>
+</div>
+
 <!-- FOOTER -->
-<footer class="footer">
+<footer class="footer" style="padding-bottom:60px">
   <div class="container">
     <p>&copy; 2026 The Gridless. All rights reserved. &nbsp;·&nbsp; <a href="../privacy.html">Privacy Policy</a></p>
   </div>
@@ -611,29 +632,57 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
 
-// Scenario challenge
-function pickScenario(el, idx) {
-  const opts = document.querySelectorAll('.sc-opt');
-  const correct = 1; // "Stop. Find or build shelter before dark"
-  opts.forEach(o => {
-    o.classList.add('disabled');
-    if (parseInt(o.dataset.idx) === correct) o.classList.add('correct');
-    else if (parseInt(o.dataset.idx) === idx && idx !== correct) o.classList.add('wrong');
-  });
-  const result = document.getElementById('scResult');
-  const title = document.getElementById('scResultTitle');
-  const text = document.getElementById('scResultText');
-  if (idx === correct) {
-    title.textContent = '✓ Correct — You\'d Survive';
-    title.style.color = '#4CAF50';
-    text.textContent = 'Shelter is your #1 priority when lost with fading light. Hypothermia kills faster than hunger or thirst. You clearly know your stuff — Gridless has 4,800+ scenarios like this to keep your skills sharp.';
-  } else {
-    title.textContent = '✗ Wrong — That Could Be Fatal';
-    title.style.color = '#E74C3C';
-    text.textContent = 'The correct answer is to stop and find shelter. With 90 minutes of daylight, hypothermia is your biggest threat — not getting found. Gridless teaches you exactly how to handle this and 4,800+ other scenarios.';
-  }
-  result.classList.add('show');
+// ===== QUIZ GATE =====
+const gateQs=[
+  {q:"What best describes your interest in survival skills?",opts:["Just curious","Weekend camper/hiker","Actively preparing for emergencies","Professional/instructor"],scores:[1,2,3,3]},
+  {q:"How would you rate your current preparedness level?",opts:["I have zero preparation","Some basics covered","Fairly well prepared","Extremely prepared"],scores:[1,1,2,3]},
+  {q:"What's your biggest concern right now?",opts:["Natural disasters in my area","Being stranded without cell service","Protecting my family in an emergency","Building long-term self-sufficiency"],scores:[2,2,3,3]}
+];
+let gIdx=0,gScore=0;
+const gCard=document.getElementById('gCard'),gResult=document.getElementById('gResult');
+const v2Gate=document.getElementById('v2Gate');
+document.body.style.overflow='hidden';
+
+function renderGQ(){
+  for(let i=0;i<3;i++){document.getElementById('gd'+i).className='g-dot'+(i<gIdx?' done':'')+(i===gIdx?' active':'')}
+  document.getElementById('gQ').textContent=gateQs[gIdx].q;
+  const o=document.getElementById('gOpts');
+  o.innerHTML=gateQs[gIdx].opts.map((t,i)=>`<div class="g-opt" onclick="pickG(this,${i})">${t}</div>`).join('');
 }
+function pickG(el,i){
+  gScore+=gateQs[gIdx].scores[i];
+  document.querySelectorAll('.g-opt').forEach(o=>{o.style.pointerEvents='none';o.style.opacity='.5'});
+  el.classList.add('selected');el.style.opacity='1';
+  document.getElementById('gd'+gIdx).className='g-dot done';
+  setTimeout(()=>{gIdx++;if(gIdx<gateQs.length)renderGQ();else showGResult()},500);
+}
+function showGResult(){
+  gCard.style.display='none';
+  gResult.classList.add('show');
+  v2Gate.classList.add('result-mode');
+  document.getElementById('gSkip').style.display='none';
+  const t=document.getElementById('gTitle'),v=document.getElementById('gVerdict');
+  if(gScore>=7){t.textContent='Access Granted — You\'re Serious';v.innerHTML='You\'re exactly who Gridless was built for. <strong>You\'re in the top 12% of applicants.</strong> Your personalized survival path is ready.';}
+  else if(gScore>=4){t.textContent='Access Granted — Welcome Aboard';v.innerHTML='Your answers show real intent to prepare. <strong>Gridless will fill the gaps in your knowledge.</strong> Over 4,800 challenges are waiting for you.';}
+  else{t.textContent='Access Granted — Start Your Journey';v.innerHTML='Everyone starts somewhere. <strong>Gridless will take you from beginner to confident</strong> with structured lessons, quizzes, and offline survival guides.';}
+}
+document.getElementById('gCTA').addEventListener('click',function(e){e.preventDefault();showV2Landing()});
+document.getElementById('gSkip').addEventListener('click',function(){showV2Landing()});
+function showV2Landing(){
+  document.body.style.overflow='';
+  v2Gate.style.transition='opacity .5s';v2Gate.style.opacity='0';
+  setTimeout(()=>{v2Gate.style.display='none'},500);
+}
+renderGQ();
+
+// Live activity bar
+setTimeout(()=>{
+  const lb=document.getElementById('liveBar'),lc=document.getElementById('liveCount');
+  let count=Math.floor(Math.random()*100)+220;lc.textContent=count;
+  const show=()=>{if(window.scrollY>300)lb.classList.add('show')};
+  window.addEventListener('scroll',show,{passive:true});
+  setInterval(()=>{count+=Math.floor(Math.random()*7)-3;count=Math.max(180,Math.min(380,count));lc.textContent=count},4000);
+},2000);
 </script>
 </body>
 </html>
