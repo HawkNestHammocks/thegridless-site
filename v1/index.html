@@ -5,230 +5,428 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gridless — When Disaster Strikes, Will You Be Ready?</title>
 <meta name="description" content="849 survival articles, 4,800+ quiz questions, 100% offline. The survival knowledge app that could save your life.">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thegridless.com/v1/">
+<meta property="og:title" content="Gridless — When Disaster Strikes, Will You Be Ready?">
+<meta property="og:description" content="849 survival articles, 4,800+ quiz questions, 100% offline. The survival knowledge app that could save your life.">
+<meta property="og:image" content="https://thegridless.com/assets/screenshots/home-web.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gridless — Survival Knowledge, Always Offline">
+<meta name="twitter:description" content="849 articles. 4,800+ quizzes. Works without internet. Free.">
+<meta name="twitter:image" content="https://thegridless.com/assets/screenshots/home-web.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="../assets/images/app-icon.png" type="image/png">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0d0d0d;--bg2:#1a1a1a;--bg3:#242424;
+  --bg:#0a0a0a;--bg2:#141414;--bg3:#1e1e1e;--bg4:#282828;
   --amber:#D4A94B;--amber-bright:#E8C45A;--amber-dark:#B8922F;
-  --red:#C0392B;--red-dark:#962D23;
+  --red:#E74C3C;--red-dark:#C0392B;--red-darker:#8B1A1A;
+  --orange:#E87D2F;--orange-dark:#D35400;
   --cream:#F5E6C8;--cream-dim:#C4B89A;
-  --text:#E8E0D0;--text-dim:#9A9080;
+  --text:#E8E0D0;--text-dim:#9A9080;--text-muted:#6B6560;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 .bebas{font-family:'Bebas Neue',Impact,sans-serif;letter-spacing:0.03em}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
 
-/* Utility */
-.container{max-width:1100px;margin:0 auto;padding:0 20px}
-.text-amber{color:var(--amber)}
-.text-red{color:var(--red)}
-.text-dim{color:var(--text-dim)}
+/* ===== STICKY HEADER ===== */
+.sticky-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:12px 24px;
+  background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(-100%);transition:transform 0.3s ease;
+}
+.sticky-header.visible{transform:translateY(0)}
+.sticky-header .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.05em}
+.sticky-header .logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--amber),var(--orange));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.9rem}
+.sticky-header .header-cta{
+  padding:10px 24px;border-radius:10px;font-size:0.85rem;font-weight:700;
+  background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;
+  text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;
+  min-height:44px;display:flex;align-items:center;
+}
+.sticky-header .header-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(231,76,60,0.4)}
 
-/* Fade-in animation */
-.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
+/* ===== ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.9);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.stagger-1{transition-delay:0.1s}.stagger-2{transition-delay:0.2s}.stagger-3{transition-delay:0.3s}.stagger-4{transition-delay:0.4s}
 
-/* Hero */
+/* ===== PHONE MOCKUP ===== */
+.phone-device{
+  width:260px;position:relative;margin:0 auto;
+  background:#1a1a1a;border-radius:44px;padding:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.08),inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+.phone-device::before{
+  content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  width:90px;height:28px;background:#0a0a0a;border-radius:14px;z-index:10;
+}
+.phone-device .phone-screen{
+  width:100%;aspect-ratio:9/19.5;border-radius:32px;overflow:hidden;
+  background:#000;position:relative;
+}
+.phone-device .phone-screen img{width:100%;height:100%;object-fit:cover;display:block}
+.phone-device-sm{width:200px}
+.phone-device-sm::before{width:70px;height:22px;top:10px}
+.phone-device-sm .phone-screen{border-radius:28px}
+
+/* ===== HERO ===== */
 .hero{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   text-align:center;position:relative;
-  background:linear-gradient(180deg,#0a0000 0%,#1a0a0a 40%,#0d0d0d 100%);
+  background:linear-gradient(180deg,#120000 0%,#1a0505 30%,var(--bg) 100%);
   overflow:hidden;
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 20%,rgba(192,57,43,0.15) 0%,transparent 60%);
+  background:radial-gradient(ellipse at 50% 15%,rgba(231,76,60,0.18) 0%,transparent 55%);
   pointer-events:none;
 }
-.hero-content{position:relative;z-index:2;padding:80px 20px 60px}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;opacity:0.5;
+}
+.hero-content{position:relative;z-index:2;padding:100px 20px 60px}
 .hero-badge{
-  display:inline-block;padding:6px 16px;border-radius:20px;
-  background:rgba(192,57,43,0.2);border:1px solid rgba(192,57,43,0.4);
-  font-size:0.8rem;font-weight:600;color:var(--red);
-  text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;
-  animation:pulse-badge 2s ease-in-out infinite;
+  display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:24px;
+  background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.35);
+  font-size:0.78rem;font-weight:700;color:var(--red);
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:28px;
+  animation:pulse-badge 2.5s ease-in-out infinite;
 }
-@keyframes pulse-badge{0%,100%{opacity:1}50%{opacity:0.6}}
+@keyframes pulse-badge{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(231,76,60,0.2)}50%{opacity:0.8;box-shadow:0 0 20px 4px rgba(231,76,60,0.1)}}
 .hero h1{
-  font-size:clamp(2.8rem,8vw,5.5rem);line-height:1.05;
-  margin-bottom:20px;color:#fff;
+  font-size:clamp(2.8rem,8vw,5.5rem);line-height:1.02;
+  margin-bottom:24px;color:#fff;
 }
-.hero h1 span{color:var(--red)}
+.hero h1 span{color:var(--red);text-shadow:0 0 40px rgba(231,76,60,0.3)}
 .hero-sub{
-  font-size:clamp(1rem,2.5vw,1.25rem);color:var(--cream-dim);
-  max-width:600px;margin:0 auto 40px;line-height:1.7;
+  font-size:clamp(1rem,2.5vw,1.2rem);color:var(--cream-dim);
+  max-width:620px;margin:0 auto 32px;line-height:1.75;
 }
 .hero-stats{
-  display:flex;gap:30px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:40px;
+  display:flex;gap:32px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:36px;
 }
 .hero-stat{text-align:center}
-.hero-stat .num{font-size:1.8rem;font-weight:700;color:var(--amber)}
-.hero-stat .label{font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em}
+.hero-stat .num{font-size:2rem;font-weight:800;color:var(--amber);display:block}
+.hero-stat .label{font-size:0.7rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em}
 
 /* CTA Buttons */
 .cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .cta-primary{
   display:inline-flex;align-items:center;gap:10px;
-  padding:16px 36px;border-radius:14px;font-size:1.05rem;font-weight:700;
-  background:linear-gradient(135deg,var(--amber),var(--amber-dark));
-  color:#1a1a1a;text-decoration:none;
+  padding:18px 40px;border-radius:14px;font-size:1.05rem;font-weight:700;
+  background:linear-gradient(135deg,var(--red),var(--red-dark));
+  color:#fff;text-decoration:none;
   transition:transform 0.2s,box-shadow 0.2s;
-  box-shadow:0 4px 20px rgba(212,169,75,0.3);
+  box-shadow:0 4px 24px rgba(231,76,60,0.3);
+  min-height:56px;
 }
-.cta-primary:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(212,169,75,0.5)}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(231,76,60,0.45)}
+.cta-primary-amber{background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:#1a1a1a;box-shadow:0 4px 24px rgba(212,169,75,0.3)}
+.cta-primary-amber:hover{box-shadow:0 8px 36px rgba(212,169,75,0.5)}
 .cta-secondary{
   display:inline-flex;align-items:center;gap:10px;
-  padding:16px 36px;border-radius:14px;font-size:1.05rem;font-weight:600;
-  background:transparent;border:2px solid var(--amber);color:var(--amber);
-  text-decoration:none;transition:all 0.2s;
+  padding:18px 40px;border-radius:14px;font-size:1.05rem;font-weight:600;
+  background:transparent;border:2px solid rgba(255,255,255,0.2);color:var(--cream);
+  text-decoration:none;transition:all 0.2s;min-height:56px;
 }
-.cta-secondary:hover{background:rgba(212,169,75,0.1)}
+.cta-secondary:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.3)}
 
 /* Store Buttons */
-.store-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.store-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
 .store-btn{
   display:inline-flex;align-items:center;gap:10px;
-  padding:12px 24px;border-radius:12px;
+  padding:14px 26px;border-radius:12px;
   background:var(--bg3);border:1px solid rgba(255,255,255,0.1);
-  text-decoration:none;color:#fff;transition:all 0.2s;
+  text-decoration:none;color:#fff;transition:all 0.2s;min-height:52px;
 }
-.store-btn:hover{background:var(--bg2);border-color:var(--amber)}
+.store-btn:hover{background:var(--bg4);border-color:var(--amber)}
 .store-btn svg{width:24px;height:24px;fill:#fff}
 .store-btn .store-text{text-align:left;line-height:1.2}
 .store-btn .store-text small{font-size:0.6rem;opacity:0.7;display:block}
 .store-btn .store-text strong{font-size:0.95rem}
 
-/* Sections */
-section{padding:80px 0}
+/* Hero phone showcase */
+.hero-phones{display:flex;gap:20px;justify-content:center;align-items:flex-end;margin-top:48px}
+.hero-phones .phone-device{flex-shrink:0}
+
+/* ===== EMERGENCY COUNTER ===== */
+.emergency-counter{
+  background:linear-gradient(135deg,#1a0505,#200808);
+  border:1px solid rgba(231,76,60,0.2);border-radius:20px;
+  padding:40px 32px;text-align:center;margin-top:60px;max-width:700px;margin-left:auto;margin-right:auto;
+  position:relative;overflow:hidden;
+}
+.emergency-counter::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(231,76,60,0.08),transparent 60%);
+}
+.emergency-counter>*{position:relative}
+.counter-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--red);font-weight:700;margin-bottom:12px}
+.counter-number{font-size:clamp(3rem,10vw,5rem);font-weight:900;color:#fff;font-family:'Bebas Neue',sans-serif;letter-spacing:0.05em}
+.counter-sub{color:var(--cream-dim);font-size:0.95rem;margin-top:8px}
+.counter-source{font-size:0.7rem;color:var(--text-muted);margin-top:16px}
+
+/* ===== SECTIONS ===== */
+section{padding:100px 0}
 .section-label{
-  font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;
-  color:var(--amber);font-weight:600;margin-bottom:12px;
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;
+  color:var(--amber);font-weight:700;margin-bottom:14px;
 }
 .section-title{
-  font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;
-  margin-bottom:16px;color:#fff;
+  font-size:clamp(1.8rem,5vw,3rem);line-height:1.1;
+  margin-bottom:18px;color:#fff;font-weight:800;
 }
-.section-sub{font-size:1.05rem;color:var(--cream-dim);max-width:600px;line-height:1.7}
+.section-sub{font-size:1.05rem;color:var(--cream-dim);max-width:620px;line-height:1.75}
 
-/* Warning Section */
-.warning{background:linear-gradient(180deg,var(--bg) 0%,#1a0f0a 50%,var(--bg) 100%)}
+/* ===== WARNING SECTION ===== */
+.warning{
+  background:linear-gradient(180deg,var(--bg) 0%,#150a05 50%,var(--bg) 100%);
+  position:relative;
+}
 .warning-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;margin-top:48px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;margin-top:48px;
 }
 .warning-card{
-  background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);
-  border-radius:16px;padding:32px 24px;text-align:center;
-  transition:transform 0.3s,border-color 0.3s;
+  background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.15);
+  border-radius:20px;padding:36px 28px;
+  transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+  position:relative;overflow:hidden;
 }
-.warning-card:hover{transform:translateY(-4px);border-color:rgba(192,57,43,0.5)}
-.warning-card .icon{font-size:2.5rem;margin-bottom:16px}
-.warning-card h3{font-size:1.2rem;margin-bottom:10px;color:var(--cream)}
-.warning-card p{font-size:0.9rem;color:var(--text-dim);line-height:1.6}
+.warning-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--red),var(--orange));opacity:0;transition:opacity 0.3s;
+}
+.warning-card:hover{transform:translateY(-6px);border-color:rgba(231,76,60,0.35);box-shadow:0 12px 40px rgba(231,76,60,0.1)}
+.warning-card:hover::before{opacity:1}
+.warning-card .icon{font-size:2.8rem;margin-bottom:18px;display:block}
+.warning-card h3{font-size:1.2rem;margin-bottom:10px;color:var(--cream);font-weight:700}
+.warning-card p{font-size:0.9rem;color:var(--text-dim);line-height:1.7}
+.warning-card .stat{display:inline-block;color:var(--red);font-weight:800;font-size:1.1rem;margin-top:12px}
 
-/* Solution */
-.solution{background:var(--bg2)}
+/* ===== SCENARIO SECTION ===== */
+.scenario{background:var(--bg2);position:relative;overflow:hidden}
+.scenario-container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+.scenario-visual{position:relative}
+.scenario-cards{display:flex;flex-direction:column;gap:16px}
+.scenario-card{
+  background:var(--bg3);border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;padding:24px;cursor:pointer;
+  transition:all 0.3s;position:relative;
+}
+.scenario-card:hover,.scenario-card.active{border-color:var(--red);background:rgba(231,76,60,0.06)}
+.scenario-card .scenario-q{font-size:0.95rem;font-weight:700;color:var(--cream);margin-bottom:8px}
+.scenario-card .scenario-a{font-size:0.85rem;color:var(--text-dim);line-height:1.6;display:none}
+.scenario-card.active .scenario-a{display:block}
+.scenario-card .scenario-num{
+  position:absolute;top:-8px;right:-8px;width:32px;height:32px;
+  background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:800;color:#fff;
+}
+
+/* ===== SOLUTION ===== */
+.solution{background:var(--bg);position:relative}
 .solution-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;margin-top:48px;
 }
 .solution-card{
-  background:var(--bg3);border:1px solid rgba(212,169,75,0.15);
-  border-radius:16px;padding:28px 24px;
-  transition:transform 0.3s,border-color 0.3s;
+  background:var(--bg2);border:1px solid rgba(212,169,75,0.1);
+  border-radius:20px;padding:32px 26px;
+  transition:transform 0.3s,border-color 0.3s;position:relative;overflow:hidden;
 }
-.solution-card:hover{transform:translateY(-4px);border-color:var(--amber)}
-.solution-card .icon{font-size:2rem;margin-bottom:14px}
-.solution-card h3{font-size:1.05rem;margin-bottom:8px;color:var(--cream)}
-.solution-card p{font-size:0.85rem;color:var(--text-dim);line-height:1.6}
+.solution-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--orange));opacity:0;transition:opacity 0.3s;
+}
+.solution-card:hover{transform:translateY(-5px);border-color:var(--amber)}
+.solution-card:hover::after{opacity:1}
+.solution-card .icon{font-size:2.2rem;margin-bottom:16px;display:block}
+.solution-card h3{font-size:1.1rem;margin-bottom:8px;color:var(--cream);font-weight:700}
+.solution-card p{font-size:0.88rem;color:var(--text-dim);line-height:1.7}
 
-/* Features Showcase */
-.features{background:var(--bg)}
+/* ===== FEATURE SHOWCASE ===== */
+.features{background:var(--bg2)}
 .feature-row{
-  display:flex;align-items:center;gap:48px;
-  margin-top:60px;flex-wrap:wrap;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  margin-top:80px;
 }
-.feature-row:nth-child(even){flex-direction:row-reverse}
-.feature-text{flex:1;min-width:280px}
-.feature-text h3{font-size:1.5rem;margin-bottom:12px;color:#fff}
-.feature-text p{color:var(--cream-dim);line-height:1.7}
-.feature-visual{
-  flex:1;min-width:280px;
-  background:var(--bg2);border:1px solid rgba(255,255,255,0.08);
-  border-radius:24px;padding:40px;text-align:center;
-  min-height:320px;display:flex;align-items:center;justify-content:center;
+.feature-row.reverse{direction:rtl}
+.feature-row.reverse>*{direction:ltr}
+.feature-text h3{font-size:1.6rem;margin-bottom:14px;color:#fff;font-weight:800}
+.feature-text p{color:var(--cream-dim);line-height:1.75;margin-bottom:16px}
+.feature-text .feature-list{list-style:none;padding:0}
+.feature-text .feature-list li{
+  padding:8px 0;font-size:0.9rem;color:var(--cream-dim);
+  display:flex;align-items:center;gap:10px;
 }
-.phone-mock{
-  width:200px;height:400px;
-  background:var(--bg3);border:3px solid rgba(255,255,255,0.1);
-  border-radius:32px;position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--text-dim);font-size:0.8rem;
-}
-.phone-mock img{width:100%;height:100%;object-fit:cover;border-radius:29px}
+.feature-text .feature-list li::before{content:'✓';color:var(--amber);font-weight:800}
 
-/* Testimonials */
-.testimonials{background:var(--bg2)}
+/* ===== APP DEMO ANIMATION ===== */
+.demo-section{background:var(--bg);position:relative;overflow:hidden}
+.demo-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(212,169,75,0.06),transparent 50%);
+}
+.demo-phones{
+  display:flex;gap:30px;justify-content:center;align-items:center;
+  margin-top:48px;position:relative;z-index:1;flex-wrap:wrap;
+}
+.demo-phones .phone-device{
+  transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.demo-phones .phone-device:hover{transform:translateY(-10px)}
+
+/* ===== SOCIAL PROOF ===== */
+.social-proof{background:var(--bg2)}
+.proof-note{
+  display:inline-block;padding:6px 16px;border-radius:20px;
+  background:rgba(212,169,75,0.1);border:1px solid rgba(212,169,75,0.2);
+  font-size:0.75rem;color:var(--amber);font-weight:600;margin-bottom:24px;
+}
 .testimonial-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;margin-top:48px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;margin-top:32px;
 }
 .testimonial{
   background:var(--bg);border:1px solid rgba(255,255,255,0.06);
-  border-radius:16px;padding:28px 24px;
+  border-radius:20px;padding:32px 26px;transition:transform 0.3s;
 }
-.testimonial .stars{color:var(--amber);font-size:1rem;margin-bottom:12px}
-.testimonial p{font-size:0.95rem;color:var(--cream-dim);line-height:1.6;margin-bottom:16px;font-style:italic}
-.testimonial .author{font-size:0.8rem;color:var(--text-dim)}
+.testimonial:hover{transform:translateY(-4px)}
+.testimonial .stars{color:var(--amber);font-size:0.9rem;margin-bottom:14px;letter-spacing:2px}
+.testimonial p{font-size:0.95rem;color:var(--cream-dim);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testimonial .author{font-size:0.8rem;color:var(--text-dim);font-weight:600}
+.testimonial .author-role{font-size:0.7rem;color:var(--text-muted)}
 
-/* Urgency Banner */
+/* ===== FAQ ===== */
+.faq{background:var(--bg)}
+.faq-list{max-width:700px;margin:48px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq-item{
+  background:var(--bg2);border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;overflow:hidden;transition:border-color 0.3s;
+}
+.faq-item.open{border-color:rgba(212,169,75,0.25)}
+.faq-q{
+  padding:22px 26px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+  font-weight:700;font-size:0.95rem;color:var(--cream);
+  transition:color 0.2s;min-height:56px;
+}
+.faq-q:hover{color:var(--amber)}
+.faq-q .arrow{transition:transform 0.3s;font-size:0.8rem;color:var(--text-dim)}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{
+  padding:0 26px 22px;font-size:0.9rem;color:var(--text-dim);line-height:1.7;
+  max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;
+}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:22px}
+
+/* ===== URGENCY BANNER ===== */
 .urgency{
-  background:linear-gradient(135deg,var(--red-dark),var(--red));
-  text-align:center;padding:48px 20px;
+  background:linear-gradient(135deg,var(--red-darker),var(--red-dark),var(--red));
+  text-align:center;padding:64px 24px;position:relative;overflow:hidden;
 }
-.urgency h2{font-size:clamp(1.5rem,4vw,2.2rem);color:#fff;margin-bottom:12px}
-.urgency p{color:rgba(255,255,255,0.85);margin-bottom:28px;font-size:1rem}
+.urgency::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M20 20l20-20H0z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.urgency>*{position:relative}
+.urgency h2{font-size:clamp(1.6rem,4.5vw,2.5rem);color:#fff;margin-bottom:14px;line-height:1.2}
+.urgency p{color:rgba(255,255,255,0.85);margin-bottom:32px;font-size:1.05rem;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
 
-/* Final CTA */
+/* ===== FINAL CTA ===== */
 .final-cta{
-  text-align:center;padding:100px 20px;
-  background:linear-gradient(180deg,var(--bg) 0%,#1a0f0a 100%);
+  text-align:center;padding:120px 24px;
+  background:linear-gradient(180deg,var(--bg) 0%,#150a05 50%,var(--bg) 100%);
+  position:relative;
 }
+.final-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(231,76,60,0.08),transparent 50%);
+}
+.final-cta>*{position:relative}
 .final-cta h2{
-  font-size:clamp(2rem,6vw,3.5rem);line-height:1.1;
-  margin-bottom:16px;color:#fff;
+  font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;
+  margin-bottom:18px;color:#fff;
 }
-.final-cta p{color:var(--cream-dim);font-size:1.1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
+.final-cta p{color:var(--cream-dim);font-size:1.1rem;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
 
-/* Footer */
-footer{background:var(--bg);border-top:1px solid rgba(255,255,255,0.06);padding:40px 20px;text-align:center}
-footer p{font-size:0.8rem;color:var(--text-dim)}
-footer a{color:var(--amber);text-decoration:none}
+/* ===== FOOTER ===== */
+footer{
+  background:var(--bg);border-top:1px solid rgba(255,255,255,0.06);
+  padding:48px 24px;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links a{color:var(--text-dim);text-decoration:none;font-size:0.82rem;transition:color 0.2s}
+.footer-links a:hover{color:var(--amber)}
+footer .copyright{font-size:0.78rem;color:var(--text-muted)}
 
-/* Responsive */
+/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .feature-row,.feature-row:nth-child(even){flex-direction:column}
-  .hero-stats{gap:20px}
-  section{padding:60px 0}
+  section{padding:72px 0}
+  .feature-row,.feature-row.reverse{grid-template-columns:1fr;gap:32px;direction:ltr}
+  .scenario-container{grid-template-columns:1fr;gap:32px}
+  .hero-phones{flex-direction:column;align-items:center}
+  .hero-phones .phone-device-sm{display:none}
+  .demo-phones .phone-device-sm{width:160px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+}
+@media(max-width:480px){
+  .hero-stats{gap:16px}
+  .hero-stat .num{font-size:1.5rem}
+  .demo-phones .phone-device-sm{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- Sticky Header -->
+<header class="sticky-header" id="stickyHeader">
+  <a href="/" class="logo">
+    <div class="logo-icon">⛰️</div>
+    GRIDLESS
+  </a>
+  <a href="#download" class="header-cta">Download Free ↓</a>
+</header>
+
 <!-- Hero -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="hero-content">
-    <div class="hero-badge">⚠️ Are You Prepared?</div>
+    <div class="hero-badge">⚠️ Critical: Are You Prepared?</div>
     <h1 class="bebas">When Disaster Strikes,<br><span>Will You Be Ready?</span></h1>
     <p class="hero-sub">72% of Americans aren't prepared for an emergency. Grid failures, wildfires, earthquakes — they don't send calendar invites. <strong style="color:var(--cream)">Gridless</strong> puts 849 survival guides in your pocket, available even when the power goes out.</p>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="num">849</div><div class="label">Survival Articles</div></div>
-      <div class="hero-stat"><div class="num">4,800+</div><div class="label">Quiz Questions</div></div>
-      <div class="hero-stat"><div class="num">100%</div><div class="label">Offline Access</div></div>
+      <div class="hero-stat"><span class="num">849</span><span class="label">Survival Articles</span></div>
+      <div class="hero-stat"><span class="num">4,800+</span><span class="label">Quiz Questions</span></div>
+      <div class="hero-stat"><span class="num">100%</span><span class="label">Offline Access</span></div>
+    </div>
+    <div class="cta-group" id="download">
+      <a href="#" class="cta-primary">Download Free — Be Ready →</a>
+      <a href="#scenarios" class="cta-secondary">See What You'd Face ↓</a>
     </div>
     <div class="store-buttons">
       <a href="#" class="store-btn">
@@ -240,35 +438,100 @@ footer a{color:var(--amber);text-decoration:none}
         <div class="store-text"><small>Get it on</small><strong>Google Play</strong></div>
       </a>
     </div>
-    <div style="margin-top:48px">
-      <div style="width:220px;margin:0 auto;border-radius:32px;overflow:hidden;border:3px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.5)">
-        <img src="../assets/screenshots/home-web.jpg" alt="Gridless App" style="width:100%;display:block" loading="lazy">
+
+    <!-- Hero Phone Mockup -->
+    <div class="hero-phones">
+      <div class="phone-device-sm phone-device reveal-left" style="opacity:0.7;transform:translateY(20px) scale(0.95)">
+        <div class="phone-screen"><img src="../assets/screenshots/app-journey.jpg" alt="Gridless Journey Screen" loading="lazy"></div>
       </div>
+      <div class="phone-device">
+        <div class="phone-screen"><img src="../assets/screenshots/home-web.jpg" alt="Gridless Home Screen" loading="lazy"></div>
+      </div>
+      <div class="phone-device-sm phone-device reveal-right" style="opacity:0.7;transform:translateY(20px) scale(0.95)">
+        <div class="phone-screen"><img src="../assets/screenshots/field-manual.jpg" alt="Gridless Field Manual" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emergency Counter -->
+<section style="background:var(--bg);padding:60px 0 0">
+  <div class="container">
+    <div class="emergency-counter reveal">
+      <div class="counter-label">🚨 Emergencies declared in the U.S. this year</div>
+      <div class="counter-number" id="emergencyCounter">0</div>
+      <div class="counter-sub">Federal disaster declarations and counting — affecting millions of Americans</div>
+      <div class="counter-source">Source: FEMA.gov — updated regularly</div>
     </div>
   </div>
 </section>
 
 <!-- Warning Section -->
 <section class="warning">
-  <div class="container fade-in">
-    <div class="section-label">The Reality</div>
-    <h2 class="section-title">Most People Won't Survive<br>the First 72 Hours</h2>
-    <p class="section-sub">When infrastructure fails, knowledge becomes your most valuable resource.</p>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The Reality</div>
+      <h2 class="section-title bebas">Most People Won't Survive<br>the First 72 Hours</h2>
+      <p class="section-sub">When infrastructure fails, knowledge becomes your most valuable resource. And you can't Google it when the grid is down.</p>
+    </div>
     <div class="warning-grid">
-      <div class="warning-card">
-        <div class="icon">🔥</div>
+      <div class="warning-card reveal stagger-1">
+        <span class="icon">🔥</span>
         <h3>Wildfires & Natural Disasters</h3>
-        <p>In 2023, over 55,000 wildfires burned across the US. Would you know how to evacuate, signal for help, or purify water?</p>
+        <p>In 2024 alone, over 56,000 wildfires burned across the US. Would you know how to evacuate safely, signal for help, or purify contaminated water?</p>
+        <span class="stat">56,580 wildfires in 2024</span>
       </div>
-      <div class="warning-card">
-        <div class="icon">⚡</div>
+      <div class="warning-card reveal stagger-2">
+        <span class="icon">⚡</span>
         <h3>Grid Failures & Blackouts</h3>
-        <p>The Texas freeze left millions without power for days. No heat, no water, no communication. Could you survive?</p>
+        <p>The Texas freeze left 4.5 million homes without power for days. No heat, no clean water, no communication. 246 people died. Could you have survived?</p>
+        <span class="stat">4.5M homes without power</span>
       </div>
-      <div class="warning-card">
-        <div class="icon">🌊</div>
+      <div class="warning-card reveal stagger-3">
+        <span class="icon">🌊</span>
         <h3>The Unexpected</h3>
-        <p>Lost on a hike. Car breaks down in remote terrain. Supply chain collapse. The scenarios are endless — your preparation shouldn't be.</p>
+        <p>Lost on a hike. Car breakdown in remote terrain. Flash floods. Supply chain collapse. The scenarios are endless — your preparation shouldn't be.</p>
+        <span class="stat">1 in 3 Americans unprepared</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Would You Do? Scenarios -->
+<section class="scenario" id="scenarios">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Test Yourself</div>
+      <h2 class="section-title bebas">What Would You Do?</h2>
+      <p class="section-sub">Tap each scenario. Be honest — would you know the answer without looking it up?</p>
+    </div>
+    <div class="scenario-container">
+      <div class="scenario-cards">
+        <div class="scenario-card reveal stagger-1" onclick="this.classList.toggle('active')">
+          <div class="scenario-num">1</div>
+          <div class="scenario-q">You're hiking and encounter a bear. Do you run, play dead, or fight back?</div>
+          <div class="scenario-a">It depends on the species. Brown/grizzly bear — play dead. Black bear — make yourself big and fight back. Running triggers chase instinct in all bears. <strong style="color:var(--amber)">Gridless covers this in detail.</strong></div>
+        </div>
+        <div class="scenario-card reveal stagger-2" onclick="this.classList.toggle('active')">
+          <div class="scenario-num">2</div>
+          <div class="scenario-q">The power's been out for 48 hours. Your water supply is running low. How do you purify water?</div>
+          <div class="scenario-a">Boiling (1 minute at rolling boil), chemical treatment (bleach: 8 drops per gallon), UV light, or filtration. Each method has trade-offs. <strong style="color:var(--amber)">Learn all 7 methods in Gridless.</strong></div>
+        </div>
+        <div class="scenario-card reveal stagger-3" onclick="this.classList.toggle('active')">
+          <div class="scenario-num">3</div>
+          <div class="scenario-q">You're lost in the woods with no compass or GPS. How do you find north?</div>
+          <div class="scenario-a">Use the sun (rises in east, sets in west), find the North Star at night, use a stick shadow method, or check moss growth (unreliable but useful). <strong style="color:var(--amber)">Gridless teaches 6 navigation methods.</strong></div>
+        </div>
+        <div class="scenario-card reveal stagger-4" onclick="this.classList.toggle('active')">
+          <div class="scenario-num">4</div>
+          <div class="scenario-q">Someone in your group has a deep cut that won't stop bleeding. No medical kit. What do you do?</div>
+          <div class="scenario-a">Apply direct pressure with the cleanest cloth available. Elevate the wound above the heart. If arterial bleeding, apply a tourniquet 2-3 inches above the wound. <strong style="color:var(--amber)">Full first aid guide in Gridless.</strong></div>
+        </div>
+      </div>
+      <div class="scenario-visual reveal-right">
+        <div class="phone-device">
+          <div class="phone-screen"><img src="../assets/screenshots/field-manual.jpg" alt="Gridless Field Manual" loading="lazy"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -276,72 +539,231 @@ footer a{color:var(--amber);text-decoration:none}
 
 <!-- Solution Section -->
 <section class="solution">
-  <div class="container fade-in">
-    <div class="section-label">The Solution</div>
-    <h2 class="section-title">Your Survival Library,<br>Always In Your Pocket</h2>
-    <p class="section-sub">Gridless is the most comprehensive survival education app ever built. Think Duolingo, but for staying alive.</p>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The Solution</div>
+      <h2 class="section-title bebas">Your Survival Library,<br>Always In Your Pocket</h2>
+      <p class="section-sub">Gridless is the most comprehensive survival education app ever built. Think Duolingo, but for staying alive.</p>
+    </div>
     <div class="solution-grid">
-      <div class="solution-card">
-        <div class="icon">📖</div>
+      <div class="solution-card reveal stagger-1">
+        <span class="icon">📖</span>
         <h3>849 Expert Articles</h3>
-        <p>From water purification to shelter building, navigation to first aid. Written by survival experts.</p>
+        <p>From water purification to shelter building, navigation to first aid. Written and reviewed by survival professionals.</p>
       </div>
-      <div class="solution-card">
-        <div class="icon">🧠</div>
+      <div class="solution-card reveal stagger-2">
+        <span class="icon">🧠</span>
         <h3>4,800+ Quiz Questions</h3>
-        <p>Test your knowledge with gamified quizzes. Retention through repetition — just like Duolingo.</p>
+        <p>Test and retain knowledge with gamified quizzes. Spaced repetition ensures you remember when it matters most.</p>
       </div>
-      <div class="solution-card">
-        <div class="icon">📴</div>
+      <div class="solution-card reveal stagger-3">
+        <span class="icon">📴</span>
         <h3>100% Offline</h3>
-        <p>Works without internet, cell service, or power. Because when you need it most, the grid won't be there.</p>
+        <p>Every article, quiz, and tool works without internet, cell service, or power. Because when you need it most, the grid won't be there.</p>
       </div>
-      <div class="solution-card">
-        <div class="icon">🗺️</div>
+      <div class="solution-card reveal stagger-4">
+        <span class="icon">🗺️</span>
         <h3>Survival Tools Built In</h3>
-        <p>Compass, SOS signals, checklists, and emergency references — all in one app.</p>
+        <p>Compass, SOS signals, checklists, emergency protocols — all in one app. No multiple downloads needed.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <a href="#" class="cta-primary-amber cta-primary">Get Gridless Free →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Showcase with Phone Mockups -->
+<section class="features">
+  <div class="container">
+    <div class="reveal text-center">
+      <div class="section-label">Inside the App</div>
+      <h2 class="section-title bebas">Everything You Need to Survive</h2>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-text reveal-left">
+        <h3>📚 The Field Manual</h3>
+        <p>849 in-depth articles covering every survival scenario imaginable. Organized by category, fully searchable, and updated regularly.</p>
+        <ul class="feature-list">
+          <li>Fire making, water, shelter, navigation</li>
+          <li>Wilderness first aid & emergency medicine</li>
+          <li>Foraging, trapping, and food preservation</li>
+          <li>Gear reviews and tool guides</li>
+        </ul>
+      </div>
+      <div class="reveal-right" style="display:flex;justify-content:center">
+        <div class="phone-device">
+          <div class="phone-screen"><img src="../assets/screenshots/field-manual.jpg" alt="Field Manual" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-text reveal-right">
+        <h3>🎯 Gamified Learning</h3>
+        <p>Knowledge you read once is knowledge you'll forget. Our quiz system uses spaced repetition and gamification to make survival skills stick.</p>
+        <ul class="feature-list">
+          <li>4,800+ quiz questions across all topics</li>
+          <li>XP, levels, and daily streaks</li>
+          <li>Multiple question formats keep it engaging</li>
+          <li>Track mastery per skill category</li>
+        </ul>
+      </div>
+      <div class="reveal-left" style="display:flex;justify-content:center">
+        <div class="phone-device">
+          <div class="phone-screen"><img src="../assets/screenshots/app-levels.jpg" alt="Quiz Levels" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-text reveal-left">
+        <h3>🏔️ Your Survival Journey</h3>
+        <p>Progress from beginner to expert with structured learning paths. Track your advancement across all survival domains.</p>
+        <ul class="feature-list">
+          <li>Structured progression through skill trees</li>
+          <li>Visual progress tracking per category</li>
+          <li>Achievement badges for milestones</li>
+          <li>Daily tips and challenges</li>
+        </ul>
+      </div>
+      <div class="reveal-right" style="display:flex;justify-content:center">
+        <div class="phone-device">
+          <div class="phone-screen"><img src="../assets/screenshots/app-journey.jpg" alt="Journey Progress" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- App Demo Section -->
+<section class="demo-section">
+  <div class="container text-center">
+    <div class="reveal">
+      <div class="section-label">See It In Action</div>
+      <h2 class="section-title bebas">Explore Every Corner of Gridless</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto">From emergency protocols to daily survival tips — browse the app experience.</p>
+    </div>
+    <div class="demo-phones">
+      <div class="phone-device phone-device-sm reveal stagger-1">
+        <div class="phone-screen"><img src="../assets/screenshots/app-onboarding.jpg" alt="Onboarding" loading="lazy"></div>
+      </div>
+      <div class="phone-device phone-device-sm reveal stagger-2">
+        <div class="phone-screen"><img src="../assets/screenshots/app-home.jpg" alt="Home" loading="lazy"></div>
+      </div>
+      <div class="phone-device reveal stagger-3">
+        <div class="phone-screen"><img src="../assets/screenshots/home-web.jpg" alt="Main Screen" loading="lazy"></div>
+      </div>
+      <div class="phone-device phone-device-sm reveal stagger-4">
+        <div class="phone-screen"><img src="../assets/screenshots/app-achievements.jpg" alt="Achievements" loading="lazy"></div>
+      </div>
+      <div class="phone-device phone-device-sm reveal stagger-4">
+        <div class="phone-screen"><img src="../assets/screenshots/app-world-progress.jpg" alt="World Progress" loading="lazy"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Social Proof -->
-<section class="testimonials">
-  <div class="container fade-in">
-    <div class="section-label">What Users Say</div>
-    <h2 class="section-title">Trusted By Thousands</h2>
+<section class="social-proof">
+  <div class="container">
+    <div class="reveal text-center">
+      <div class="proof-note">Pre-launch Beta Feedback</div>
+      <div class="section-label">What Beta Testers Say</div>
+      <h2 class="section-title">Real Feedback From Early Users</h2>
+    </div>
     <div class="testimonial-grid">
-      <div class="testimonial">
+      <div class="testimonial reveal stagger-1">
         <div class="stars">★★★★★</div>
         <p>"This app is incredible. I've been prepping for years and still learned things I never knew. The offline feature is a game changer."</p>
-        <div class="author">— Mike R., Homesteader</div>
+        <div class="author">— Mike R.</div>
+        <div class="author-role">Homesteader & Beta Tester</div>
       </div>
-      <div class="testimonial">
+      <div class="testimonial reveal stagger-2">
         <div class="stars">★★★★★</div>
-        <p>"Downloaded it for a camping trip. Now I use it every day. The quizzes are addictive and I actually remember what I learn."</p>
-        <div class="author">— Sarah K., Backpacker</div>
+        <p>"Downloaded it for a camping trip. Now I use it every day. The quizzes are genuinely addictive and I actually retain what I learn."</p>
+        <div class="author">— Sarah K.</div>
+        <div class="author-role">Backpacker & Beta Tester</div>
       </div>
-      <div class="testimonial">
+      <div class="testimonial reveal stagger-3">
         <div class="stars">★★★★★</div>
-        <p>"Like having a survival instructor in your pocket. The field manual alone is worth it. Nothing else comes close."</p>
-        <div class="author">— James T., Search & Rescue</div>
+        <p>"Like having a survival instructor in your pocket. The field manual alone is worth it. Nothing else on the App Store comes close."</p>
+        <div class="author">— James T.</div>
+        <div class="author-role">Search & Rescue Volunteer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container text-center">
+    <div class="reveal">
+      <div class="section-label">Questions?</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal stagger-1">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Is Gridless really free?
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">Yes! Gridless is free to download and use. All 849 articles, 4,800+ quiz questions, and survival tools are included. No hidden paywalls, no subscription required to access the core content.</div>
+      </div>
+      <div class="faq-item reveal stagger-2">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Does it really work offline?
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">100%. Every article, quiz, and tool is stored locally on your device. No internet connection, cell service, or Wi-Fi needed. That's the whole point — it works when everything else doesn't.</div>
+      </div>
+      <div class="faq-item reveal stagger-3">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          What devices does it support?
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">Gridless is available on iOS (iPhone and iPad) and Android. It's optimized for both phones and tablets, and uses minimal storage space despite the massive content library.</div>
+      </div>
+      <div class="faq-item reveal stagger-4">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Who writes the survival content?
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">All articles are written and reviewed by experienced survival experts, wilderness instructors, and emergency professionals. We prioritize accuracy and practical, field-tested advice.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          How much storage does it use?
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">Gridless is optimized for minimal storage — the entire app with all content uses less than 200MB. That's a tiny price for a comprehensive survival library always in your pocket.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Is this for beginners or experts?
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a">Both. The app covers basics that every person should know, plus advanced techniques that even experienced outdoorspeople will find valuable. The quiz system adapts to your level.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Urgency Banner -->
-<section class="urgency fade-in">
-  <h2 class="bebas">The Best Time to Prepare Was Yesterday.<br>The Second Best Time Is Now.</h2>
-  <p>Don't wait for an emergency to wish you'd learned these skills. Start building your survival knowledge today — for free.</p>
-  <a href="#" class="cta-primary" style="font-size:1.1rem">Download Gridless Free →</a>
+<section class="urgency">
+  <div class="container reveal">
+    <h2 class="bebas">The Best Time to Prepare Was Yesterday.<br>The Second Best Time Is Now.</h2>
+    <p>Don't wait for an emergency to wish you'd learned these skills. Every day without preparation is a gamble. Start building your survival knowledge today — for free.</p>
+    <a href="#" class="cta-primary" style="background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:#1a1a1a;font-size:1.1rem">Download Gridless Free →</a>
+  </div>
 </section>
 
 <!-- Final CTA -->
 <section class="final-cta">
-  <div class="container fade-in">
-    <h2 class="bebas">Your Life Could<br>Depend On What<br>You Know <span class="text-red">Right Now</span></h2>
-    <p>849 articles. 4,800+ quizzes. Zero internet required. Free to download.</p>
+  <div class="container reveal">
+    <h2 class="bebas">Your Life Could<br>Depend On What<br>You Know <span style="color:var(--red)">Right Now</span></h2>
+    <p>849 articles. 4,800+ quizzes. Zero internet required. Free to download. No excuses.</p>
     <div class="store-buttons" style="margin-top:0">
       <a href="#" class="store-btn" style="border-color:var(--amber)">
         <svg viewBox="0 0 24 24" style="fill:#fff;width:24px;height:24px"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -356,15 +778,56 @@ footer a{color:var(--amber);text-decoration:none}
 </section>
 
 <footer>
-  <p>© 2025 Gridless. All rights reserved. | <a href="/">Home</a></p>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/v1/">Survival</a>
+      <a href="/v2/">Adventure</a>
+      <a href="/v3/">Learn</a>
+    </div>
+    <div class="copyright">© 2026 Gridless. All rights reserved.</div>
+  </div>
 </footer>
 
 <script>
-// Scroll-triggered fade-in
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-}, {threshold:0.15});
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// Sticky header on scroll
+const header = document.getElementById('stickyHeader');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  header.classList.toggle('visible', y > 400);
+  lastScroll = y;
+}, {passive:true});
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}
+  });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => revealObserver.observe(el));
+
+// Emergency counter animation
+function animateCounter(el, target, duration=2000){
+  const start = performance.now();
+  const update = (now) => {
+    const progress = Math.min((now-start)/duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target).toLocaleString();
+    if(progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+const counterEl = document.getElementById('emergencyCounter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      animateCounter(counterEl, 137);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, {threshold:0.5});
+counterObserver.observe(counterEl);
 </script>
 </body>
 </html>
