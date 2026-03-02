@@ -52,7 +52,8 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .btn-outline{border:2px solid var(--amber);color:var(--amber);background:transparent}
 .btn-outline:hover{background:rgba(212,169,75,.1);transform:translateY(-2px)}
 .header-cta{font-size:.85rem;padding:10px 22px;min-height:44px}
-@media(max-width:480px){.header-cta{font-size:.75rem;padding:8px 14px;min-height:36px;white-space:nowrap}}
+@media(max-width:480px){.header-cta{font-size:.72rem;padding:7px 12px;min-height:34px;white-space:nowrap;max-width:120px;text-overflow:ellipsis;overflow:hidden}}
+.header-inner{overflow:hidden}
 
 /* ===== PHONE MOCKUP ===== */
 .phone{position:relative;width:260px;margin:0 auto;flex-shrink:0}
@@ -99,7 +100,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-triple{display:none}
 .hero-inner .hero-sub{display:none}
 .hero-inner .store-buttons{display:none}
-.hero-mobile-triple{display:flex;align-items:center;justify-content:center;margin-top:-10px}
+.hero-mobile-triple{display:flex;align-items:center;justify-content:center;margin-top:12px}
 .hero-mobile-phone{display:none}
 .hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:24px auto 24px;padding-top:8px;line-height:1.6;text-align:center}
 .hero-mobile-cta{display:flex;gap:10px;justify-content:center;flex-wrap:nowrap}
@@ -142,6 +143,28 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .feature-icon{font-size:2rem;margin-bottom:14px}
 .feature-card h3{font-size:1.1rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
 .feature-card p{font-size:.9rem;color:var(--dim);line-height:1.55}
+
+/* ===== SCENARIO CHALLENGE ===== */
+.scenario{padding:80px 0;background:linear-gradient(180deg,var(--bg),#1a1008,var(--bg));position:relative;text-align:center}
+.scenario::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(232,125,47,0.08),transparent 60%)}
+.scenario-card{max-width:520px;margin:0 auto;background:var(--bg3);border:2px solid rgba(232,125,47,0.2);border-radius:20px;padding:32px 24px;position:relative;z-index:1}
+.scenario-card .sc-label{display:inline-flex;align-items:center;gap:6px;background:rgba(232,125,47,0.12);color:var(--orange);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:50px;margin-bottom:16px}
+.scenario-card .sc-label .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:scPulse 2s infinite}
+@keyframes scPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.scenario-card h3{font-family:var(--font-head);font-size:1.3rem;color:#fff;text-transform:uppercase;margin-bottom:8px}
+.scenario-card .sc-q{color:var(--dim);font-size:1rem;line-height:1.6;margin-bottom:20px}
+.sc-opts{display:flex;flex-direction:column;gap:8px}
+.sc-opt{background:var(--bg2);border:2px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;cursor:pointer;font-size:.92rem;color:var(--cream);transition:all .25s;text-align:left;font-weight:500}
+.sc-opt:hover{border-color:rgba(232,125,47,0.3);background:rgba(232,125,47,0.05)}
+.sc-opt.correct{border-color:#4CAF50;background:rgba(76,175,80,0.1);color:#4CAF50}
+.sc-opt.wrong{border-color:#C0392B;background:rgba(192,57,43,0.1);color:#C0392B;opacity:.6}
+.sc-opt.disabled{pointer-events:none}
+.sc-result{display:none;margin-top:20px;padding:20px;border-radius:12px;text-align:center}
+.sc-result.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.sc-result h4{font-family:var(--font-head);font-size:1.1rem;text-transform:uppercase;margin-bottom:8px}
+.sc-result p{color:var(--dim);font-size:.88rem;line-height:1.5;margin-bottom:16px}
+.sc-result .btn{font-size:.85rem;padding:10px 20px}
 
 /* ===== APP SHOWCASE ===== */
 .showcase{padding:80px 0}
@@ -373,6 +396,30 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
   </div>
 </section>
 
+<!-- SCENARIO CHALLENGE -->
+<section class="scenario">
+  <div class="container reveal">
+    <div class="section-title gradient-text" style="margin-bottom:8px">Can You Survive This?</div>
+    <p class="section-sub">Real scenario. One right answer. Let's see what you've got.</p>
+    <div class="scenario-card" id="scenarioCard">
+      <div class="sc-label"><span class="pulse"></span> Survival Scenario</div>
+      <h3 id="scTitle">Lost in the Wilderness</h3>
+      <p class="sc-q" id="scQuestion">You're hiking alone and realize you've been off-trail for 3 hours. Your phone is dead. The sun is setting in 90 minutes. What's your FIRST priority?</p>
+      <div class="sc-opts" id="scOpts">
+        <div class="sc-opt" data-idx="0" onclick="pickScenario(this,0)">Keep walking — you'll find the trail eventually</div>
+        <div class="sc-opt" data-idx="1" onclick="pickScenario(this,1)">Stop. Find or build shelter before dark</div>
+        <div class="sc-opt" data-idx="2" onclick="pickScenario(this,2)">Start a signal fire immediately</div>
+        <div class="sc-opt" data-idx="3" onclick="pickScenario(this,3)">Climb the highest tree to look around</div>
+      </div>
+      <div class="sc-result" id="scResult">
+        <h4 id="scResultTitle"></h4>
+        <p id="scResultText"></p>
+        <a href="#download" class="btn btn-amber" style="font-size:.85rem;padding:10px 20px">Learn More Scenarios in Gridless →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- APP SHOWCASE -->
 <section class="showcase">
   <div class="container">
@@ -562,6 +609,30 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
+
+// Scenario challenge
+function pickScenario(el, idx) {
+  const opts = document.querySelectorAll('.sc-opt');
+  const correct = 1; // "Stop. Find or build shelter before dark"
+  opts.forEach(o => {
+    o.classList.add('disabled');
+    if (parseInt(o.dataset.idx) === correct) o.classList.add('correct');
+    else if (parseInt(o.dataset.idx) === idx && idx !== correct) o.classList.add('wrong');
+  });
+  const result = document.getElementById('scResult');
+  const title = document.getElementById('scResultTitle');
+  const text = document.getElementById('scResultText');
+  if (idx === correct) {
+    title.textContent = '✓ Correct — You\'d Survive';
+    title.style.color = '#4CAF50';
+    text.textContent = 'Shelter is your #1 priority when lost with fading light. Hypothermia kills faster than hunger or thirst. You clearly know your stuff — Gridless has 4,800+ scenarios like this to keep your skills sharp.';
+  } else {
+    title.textContent = '✗ Wrong — That Could Be Fatal';
+    title.style.color = '#E74C3C';
+    text.textContent = 'The correct answer is to stop and find shelter. With 90 minutes of daylight, hypothermia is your biggest threat — not getting found. Gridless teaches you exactly how to handle this and 4,800+ other scenarios.';
+  }
+  result.classList.add('show');
+}
 </script>
 </body>
 </html>
