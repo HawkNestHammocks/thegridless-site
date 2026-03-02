@@ -165,6 +165,8 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
   .badges-grid{grid-template-columns:repeat(2,1fr)}
   .path-steps{grid-template-columns:1fr;max-width:280px;margin:0 auto}
 }
+.rugged-icon{width:44px;height:44px;object-fit:contain;display:inline-block}
+.rugged-icon-sm{width:28px;height:28px;object-fit:contain;display:inline-block}
 </style>
 </head>
 <body>
@@ -258,32 +260,32 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
     <p class="section-sub reveal">Built for learners, designed for survivors.</p>
     <div class="features-grid">
       <div class="feature-card reveal">
-        <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+        <img src="../assets/icons/icon_book.png" alt="Articles" class="rugged-icon">
         <h3>Field Manual</h3>
         <p>605 survival articles covering fire, water, shelter, navigation, first aid, signaling, and more. All written by experts.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B8A88A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 017 7c0 2.5-1.5 4.5-3 6l-1 5H9l-1-5c-1.5-1.5-3-3.5-3-6a7 7 0 017-7z"/><line x1="9" y1="22" x2="15" y2="22"/></svg></div>
+        <img src="../assets/icons/icon_daily_drill.png" alt="Quiz" class="rugged-icon">
         <h3>Gamified Quizzes</h3>
         <p>4,800+ questions across difficulty levels. Earn XP, track streaks, and actually retain what you read.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8a7e6a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 11l2 2 4-4"/><circle cx="12" cy="18" r="1" fill="#8a7e6a"/></svg></div>
+        <img src="../assets/icons/icon_field_manual.png" alt="Offline" class="rugged-icon">
         <h3>Offline Access</h3>
         <p>Every article, every quiz, every tool — available with zero signal. Because emergencies don't wait for Wi-Fi.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="rgba(212,169,75,0.2)"/></svg></div>
+        <img src="../assets/icons/icon_compass.png" alt="Navigation" class="rugged-icon">
         <h3>Survival Tools</h3>
         <p>Built-in compass, flashlight, SOS signal, and checklists. Your phone becomes your most valuable survival tool.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6A8D5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+        <img src="../assets/icons/icon_journey.png" alt="Worlds" class="rugged-icon">
         <h3>4 Learning Worlds</h3>
         <p>Wilderness, Urban Survival, Medical Emergencies, and Natural Disasters. Each world has its own progression path.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E87D2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 01-2-2V4a1 1 0 011-1h3"/><path d="M18 9h2a2 2 0 002-2V4a1 1 0 00-1-1h-3"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg></div>
+        <img src="../assets/icons/icon_equip.png" alt="Achievements" class="rugged-icon">
         <h3>Achievement System</h3>
         <p>Unlock badges as you master new skills. Track your journey from beginner to survival expert.</p>
       </div>
@@ -325,14 +327,14 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
     <h2 class="section-title gradient-text reveal">Earn Your Badges</h2>
     <p class="section-sub reveal">Master skills. Collect proof. Every badge is a survival milestone.</p>
     <div class="badges-grid reveal">
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E87D2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z"/></svg></div><div class="badge-name">Fire Starter</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B8DBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-4 6-7 9-7 13a7 7 0 0014 0c0-4-3-7-7-13z"/></svg></div><div class="badge-name">Water Expert</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A94B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="rgba(212,169,75,0.3)"/></svg></div><div class="badge-name">Navigation Pro</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16"/><path d="M4 14h16"/><path d="M12 4v16"/></svg></div><div class="badge-name">First Aid</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6A8D5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22l9-4 9 4V4L12 8 3 4z"/></svg></div><div class="badge-name">Shelter Builder</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6A8D5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c-4-4-8-7-8-12a8 8 0 0116 0c0 5-4 8-8 12z"/><path d="M8 11c2-2 4-1 4 1s2 3 4 1"/></svg></div><div class="badge-name">Forager</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8a7e6a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="M4.93 10.93l2.83-2.83"/><path d="M19.07 10.93l-2.83-2.83"/><circle cx="12" cy="16" r="6"/><circle cx="12" cy="16" r="2"/></svg></div><div class="badge-name">Signal Master</div></div>
-      <div class="badge-item"><div class="badge-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B8DBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 16.9A5 5 0 0018 7h-1.26A8 8 0 104 15.25"/><path d="M13 11l-4 6h6l-4 6"/></svg></div><div class="badge-name">Disaster Ready</div></div>
+      <div class="badge-item"><img src="../assets/icons/badge_firestarter.png" alt="Fire" class="rugged-icon-sm"><div class="badge-name">Fire Starter</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_compass.png" alt="Water" class="rugged-icon-sm"><div class="badge-name">Water Expert</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_compass.png" alt="Navigation" class="rugged-icon-sm"><div class="badge-name">Navigation Pro</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_emergency.png" alt="First Aid" class="rugged-icon-sm"><div class="badge-name">First Aid</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_journey.png" alt="Shelter" class="rugged-icon-sm"><div class="badge-name">Shelter Builder</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_book.png" alt="Forager" class="rugged-icon-sm"><div class="badge-name">Forager</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_crosshair.png" alt="Signal" class="rugged-icon-sm"><div class="badge-name">Signal Master</div></div>
+      <div class="badge-item"><img src="../assets/icons/icon_emergency.png" alt="Disaster" class="rugged-icon-sm"><div class="badge-name">Disaster Ready</div></div>
     </div>
   </div>
 </section>
