@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gridless — Survival Skills App</title>
+<link rel="icon" href="assets/images/app-icon.png" type="image/png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#0d0d0d;color:#E8E0D0;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.wrap{text-align:center;padding:40px 20px;max-width:600px}
+h1{font-size:2.5rem;margin-bottom:8px;color:#fff}
+.sub{color:#9A9080;margin-bottom:48px;font-size:1.1rem}
+.links{display:flex;flex-direction:column;gap:16px}
+a{display:block;padding:20px 32px;border-radius:16px;text-decoration:none;font-size:1.1rem;font-weight:700;transition:transform 0.2s,box-shadow 0.2s;text-align:left}
+a:hover{transform:translateY(-2px)}
+a .label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;opacity:0.7}
+.v1{background:linear-gradient(135deg,#1a0a0a,#2a1010);border:1px solid rgba(192,57,43,0.3);color:#E8E0D0}
+.v1:hover{box-shadow:0 4px 20px rgba(192,57,43,0.2)}
+.v2{background:linear-gradient(135deg,#1a1205,#2a1f0a);border:1px solid rgba(212,169,75,0.3);color:#E8E0D0}
+.v2:hover{box-shadow:0 4px 20px rgba(212,169,75,0.2)}
+.v3{background:linear-gradient(135deg,#0f1a10,#152a15);border:1px solid rgba(107,203,119,0.3);color:#E8E0D0}
+.v3:hover{box-shadow:0 4px 20px rgba(107,203,119,0.2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🏕️ Gridless</h1>
+<p class="sub">Landing Page Variants</p>
+<div class="links">
+<a href="v1/" class="v1"><div class="label">Version 1 — Fear/Urgency</div>"When Disaster Strikes, Will You Be Ready?"</a>
+<a href="v2/" class="v2"><div class="label">Version 2 — Adventure/Empowerment</div>"Master the Wild. Own Your Survival."</a>
+<a href="v3/" class="v3"><div class="label">Version 3 — Education/Game</div>"Learn Survival Skills in 5 Minutes a Day"</a>
+</div>
+</div>
+</body>
+</html>
