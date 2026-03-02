@@ -181,6 +181,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .hero-mobile-triple{animation:fadeInUp .8s ease .2s both}
 .hero-mobile-cta,.store-buttons{animation:fadeInUp .7s ease .45s both}
 .hero h2{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;line-height:1.05;color:transparent;margin-bottom:12px;background:linear-gradient(180deg,#ffffff 30%,#b0b0b0 100%);-webkit-background-clip:text;background-clip:text;text-shadow:none;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.6))}
+.hero h2 .hero-pre{font-size:0.55em;color:#999;background:none;-webkit-text-fill-color:#999;filter:none;font-weight:600;letter-spacing:0.04em;display:block;margin-bottom:2px}
 .hero h2 span{background:linear-gradient(180deg,#e74c3c 20%,#8b1a1a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none;filter:none}
 .hero-sub{font-size:clamp(1rem,2.5vw,1.15rem);color:var(--dim);max-width:540px;margin:0 0 28px;line-height:1.7}
 .hero-phones{display:flex;justify-content:center;gap:20px;margin-bottom:48px;flex-wrap:wrap}
@@ -233,7 +234,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .section-title{text-align:center;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:transparent;margin-bottom:16px;background:linear-gradient(180deg,#ffffff 30%,#a0a0a0 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.6))}
 .section-sub{text-align:center;color:var(--dim);font-size:1rem;margin-bottom:48px;max-width:550px;margin-left:auto;margin-right:auto}
 .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto;padding:0 20px;justify-items:center}
-@media(max-width:699px){.feature-grid{grid-template-columns:1fr;max-width:400px}}
+@media(max-width:699px){.feature-grid{grid-template-columns:1fr;max-width:100%;padding:0}}
 .f-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 24px;transition:transform 0.3s,border-color 0.3s}
 .f-card:hover{transform:translateY(-3px);border-color:rgba(212,169,75,0.3)}
 .f-card .icon-svg{margin-bottom:14px;width:2.4rem;height:2.4rem}
@@ -271,7 +272,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 /* ==================== BETA FEEDBACK ==================== */
 .feedback{padding:80px 20px}
 .feedback-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:900px;margin:0 auto;padding:0 20px;justify-items:center}
-@media(max-width:699px){.feedback-grid{grid-template-columns:1fr;max-width:400px}}
+@media(max-width:699px){.feedback-grid{grid-template-columns:1fr;max-width:100%;padding:0}}
 .fb-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px 24px}
 .fb-card .tag{display:inline-block;background:rgba(212,169,75,0.12);color:var(--amber);padding:4px 12px;border-radius:6px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px}
 .fb-card p{color:var(--dim);font-size:0.95rem;line-height:1.6;font-style:italic;margin-bottom:14px}
@@ -390,7 +391,7 @@ footer a:hover{text-decoration:underline}
 
   <div class="hero-inner">
     <div class="hero-text">
-      <h2>When Disaster Strikes,<br><span>Will You Be Ready?</span></h2>
+      <h2><span class="hero-pre">When Disaster Strikes,</span><br><span>Will You Be Ready?</span></h2>
       <p class="hero-sub">Your phone is useless without signal — unless you have Gridless. 605 survival guides, emergency protocols, and real skills. All available offline.</p>
 
       <div class="store-buttons" id="download">
@@ -431,9 +432,6 @@ footer a:hover{text-decoration:underline}
 
   <!-- Mobile: triple phone -->
   <div class="hero-mobile-triple">
-    <div class="alert-bubble">
-      <img src="../assets/icons/emergency-icon.png" alt="" style="width:14px;height:14px"> 60% of North Americans are unprepared
-    </div>
     <div class="phone left">
       <img src="../assets/screenshots/journey-home.png" alt="Journey" style="width:100%;height:auto" loading="eager">
     </div>
@@ -443,6 +441,9 @@ footer a:hover{text-decoration:underline}
     <div class="phone right">
       <img src="../assets/screenshots/quiz-question.png" alt="Quiz" style="width:100%;height:auto" loading="eager">
     </div>
+  </div>
+  <div class="alert-bubble hero-alert-mobile" style="position:relative;left:auto;bottom:auto;transform:none;opacity:0;margin:8px auto 0;display:inline-flex">
+    <img src="../assets/icons/emergency-icon.png" alt="" style="width:14px;height:14px"> 60% of North Americans are unprepared
   </div>
   <p class="hero-mobile-sub">Your phone is useless without signal — unless you have Gridless. 605 survival guides, emergency protocols, and real skills. All available offline.</p>
   <div class="stats-bar" style="margin-top:16px">
@@ -597,17 +598,17 @@ footer a:hover{text-decoration:underline}
       <div class="fb-card">
         <div class="tag">Beta Tester</div>
         <p>"The offline feature is the killer feature. I tested it on a 3-day camping trip with zero signal — had access to every article. Nothing else does this."</p>
-        <div class="author">— Early Access Tester</div>
+        <div class="author">— Marcus T.</div>
       </div>
       <div class="fb-card">
         <div class="tag">Beta Tester</div>
         <p>"The emergency protocols alone are worth the download. Step-by-step instructions that stay calm when you can't. This should be on everyone's phone."</p>
-        <div class="author">— Early Access Tester</div>
+        <div class="author">— Sarah K.</div>
       </div>
       <div class="fb-card">
         <div class="tag">Beta Tester</div>
         <p>"I've been prepping for years and still learned things I didn't know. The quiz system actually makes the knowledge stick — way better than just reading."</p>
-        <div class="author">— Early Access Tester</div>
+        <div class="author">— Jake R.</div>
       </div>
     </div>
   </div>
@@ -695,6 +696,9 @@ function initReveals(){document.querySelectorAll('.reveal,.reveal-left,.reveal-r
 // Alert bubbles — pop in when phone scrolls into view
 const bubbleObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const b=e.target.querySelector('.alert-bubble');if(b)setTimeout(()=>b.classList.add('visible'),600);bubbleObs.unobserve(e.target)}})},{threshold:0.3});
 document.querySelectorAll('.hero-mobile-triple,.hero-triple').forEach(el=>bubbleObs.observe(el));
+// Mobile standalone bubble
+const mobileAlert=document.querySelector('.hero-alert-mobile');
+if(mobileAlert){const mo=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{mobileAlert.style.opacity='1';mobileAlert.style.transform='scale(1)';mobileAlert.style.transition='opacity .4s,transform .4s cubic-bezier(.34,1.56,.64,1)'},400);mo.unobserve(e.target)}})},{threshold:0.3});mo.observe(mobileAlert)}
 
 // ===== QUIZ GATE LOGIC =====
 const quizGate=document.getElementById('quizGate');
