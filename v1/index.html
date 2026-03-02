@@ -150,10 +150,9 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .quiz-skip{margin-top:24px;color:var(--dimmer);font-size:0.8rem;cursor:pointer;background:none;border:none;text-decoration:underline;transition:color 0.2s}
 .quiz-skip:hover{color:var(--dim)}
 
-/* Landing page (hidden until quiz done) */
-.landing-content{display:none}
-.landing-content.show{display:block;animation:landingSlideIn .6s ease both}
-@keyframes landingSlideIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+/* Quiz overlay on top of landing */
+.quiz-gate{position:fixed;inset:0;z-index:200}
+.landing-content{display:block}
 
 /* ==================== HERO ==================== */
 .hero{padding:60px 20px 60px;position:relative;overflow:hidden}
@@ -702,19 +701,19 @@ const quizGate=document.getElementById('quizGate');
 const landingContent=document.getElementById('landingContent');
 const skipBtn=document.getElementById('skipQuiz');
 
-function showLanding(smooth){
-  quizGate.style.transition='opacity .4s, transform .4s';
+function showLanding(){
+  document.body.style.overflow='';
+  quizGate.style.transition='opacity .5s ease';
   quizGate.style.opacity='0';
-  quizGate.style.transform='translateY(-60px)';
   setTimeout(()=>{
     quizGate.style.display='none';
-    window.scrollTo(0,0);
-    landingContent.classList.add('show');
     initReveals();
     initCounters();
     document.querySelectorAll('.stats-bar').forEach(el=>setTimeout(()=>el.classList.add('visible'),300));
-  },400);
+  },500);
 }
+// Lock scroll while quiz is showing
+document.body.style.overflow='hidden';
 
 skipBtn.addEventListener('click',()=>showLanding());
 
