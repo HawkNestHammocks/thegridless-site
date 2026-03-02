@@ -89,7 +89,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-inner{display:flex;align-items:center;text-align:left;gap:40px}
 .hero h1{font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-1px;margin-bottom:12px}
 .hero-sub{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--dim);max-width:520px;margin:0 0 28px}
-.store-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.store-buttons{display:flex;flex-direction:column;align-items:center;gap:12px}
 .hero-bg-phone{display:none}
 .hero-mobile-phone{display:none}
 @media(max-width:699px){
@@ -103,8 +103,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-mobile-triple{display:flex;align-items:center;justify-content:center;margin-top:24px}
 .hero-mobile-phone{display:none}
 .hero-mobile-sub{display:block;color:var(--dim);font-size:.95rem;max-width:400px;margin:24px auto 24px;padding-top:8px;line-height:1.6;text-align:center}
-.hero-mobile-cta{display:flex;gap:10px;justify-content:center;flex-wrap:nowrap;padding:0 16px}
-.hero-mobile-cta .store-btn{padding:10px 14px;font-size:.8rem;min-height:44px;flex:1;max-width:160px}
+.hero-mobile-cta{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 16px}
 }
 @media(min-width:700px){
 .hero-inner>.phone{display:none}
@@ -114,9 +113,9 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .hero-mobile-sub{display:none}
 .hero-mobile-cta{display:none}
 }
-.store-btn{display:inline-block;transition:transform .2s,opacity .2s}
+.store-btn{display:block;width:200px;transition:transform .2s,opacity .2s}
 .store-btn:hover{transform:scale(1.05);opacity:0.9}
-.store-btn img{height:48px;width:auto;display:block}
+.store-btn img{width:100%;height:auto;display:block}
 
 /* ===== STATS BAR ===== */
 .stats{padding:48px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
@@ -335,7 +334,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
     </div>
   </div>
   <p class="hero-mobile-sub">Become the person everyone turns to in an emergency. Real survival knowledge, gamified learning, zero fluff — all offline.</p>
-  <div class="hero-mobile-cta">
+  <div class="hero-mobile-cta" id="download-mobile">
     <a href="https://testflight.apple.com/join/XN7bTpZm" class="store-btn" target="_blank"><img src="../assets/images/app-store-badge.svg" alt="Download on the App Store"></a>
     <a href="https://play.google.com/apps/testing/com.hawknesthammocks.gridless" class="store-btn" target="_blank"><img src="../assets/images/google-play-badge.png" alt="Get it on Google Play"></a>
   </div>
@@ -596,6 +595,14 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 </footer>
 
 <script>
+// Fix download links — scroll to visible target
+document.querySelectorAll('a[href="#download"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    const target=window.innerWidth<700?document.getElementById('download-mobile'):document.getElementById('download');
+    if(target)target.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+});
 // Header scroll effect
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {

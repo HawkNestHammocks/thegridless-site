@@ -127,9 +127,9 @@ img{max-width:100%;display:block}
 .hero-stat .label{font-size:.65rem;color:var(--dimmer);text-transform:uppercase;letter-spacing:.06em}
 /* Store buttons */
 .store-row{display:flex;gap:12px;flex-wrap:wrap}
-.store-btn{display:inline-block;transition:transform .25s,opacity .25s}
+.store-btn{display:block;width:200px;transition:transform .25s,opacity .25s}
 .store-btn:hover{transform:scale(1.05);opacity:0.9}
-.store-btn img{height:48px;width:auto;display:block}
+.store-btn img{width:100%;height:auto;display:block}
 /* Triple phone */
 .hero-triple{display:flex;justify-content:center;align-items:center;position:relative;height:340px;width:360px;flex-shrink:0}
 .hero-triple::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:400px;background:radial-gradient(ellipse,rgba(90,158,95,0.18) 0%,transparent 70%);z-index:0;pointer-events:none}
@@ -162,7 +162,7 @@ img{max-width:100%;display:block}
 .hero-mobile-stats .stat-pill{text-align:center}
 .hero-mobile-stats .stat-val{font-size:.95rem;font-weight:900;color:var(--xp-gold);display:block}
 .hero-mobile-stats .stat-lbl{font-size:.6rem;color:var(--dimmer);text-transform:uppercase;letter-spacing:.06em}
-.hero-mobile-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 16px;position:relative;z-index:2}
+.hero-mobile-cta{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 16px;position:relative;z-index:2}
 }
 @media(min-width:700px){.hero-mobile-triple,.hero-mobile-sub,.hero-mobile-stats,.hero-mobile-cta{display:none!important}}
 
