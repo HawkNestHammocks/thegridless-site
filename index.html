@@ -22,6 +22,32 @@ a .label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;margin-
 .v3{background:linear-gradient(135deg,#0f1a10,#152a15);border:1px solid rgba(107,203,119,0.3);color:#E8E0D0}
 .v3:hover{box-shadow:0 4px 20px rgba(107,203,119,0.2)}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1759518158354538');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1759518158354538&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Store Click Tracking -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll("a.store-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var store = this.href.includes("apple") || this.href.includes("testflight") ? "iOS" : "Android";
+      fbq("trackCustom", "StoreClick", {store: store, page: window.location.pathname});
+    });
+  });
+});
+</script>
 </head>
 <body>
 <div class="wrap">
