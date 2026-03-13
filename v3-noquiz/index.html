@@ -38,9 +38,9 @@ img{max-width:100%;display:block}
 @keyframes timerPulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0)}50%{box-shadow:0 0 0 8px rgba(192,57,43,0.2)}}
 @keyframes levelUp{0%{transform:scale(0.5) rotate(-10deg);opacity:0}50%{transform:scale(1.15) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
 @keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
-.reveal{opacity:1;transform:translateY(0);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-zoom{opacity:1;transform:scale(0.85);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-zoom{opacity:0;transform:scale(0.85);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
 .reveal-zoom.visible{opacity:1;transform:scale(1)}
 .stagger-1{transition-delay:.1s}.stagger-2{transition-delay:.2s}.stagger-3{transition-delay:.3s}.stagger-4{transition-delay:.4s}
 
@@ -54,60 +54,60 @@ img{max-width:100%;display:block}
 /* XP counter in header */
 .header-xp{display:flex;align-items:center;gap:4px;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.2);padding:5px 10px;border-radius:50px;font-size:.7rem;font-weight:800;color:var(--xp-gold);white-space:nowrap}
 .header-xp svg{width:12px;height:12px;fill:var(--xp-gold)}
-
-@media(max-width:400px){.header-xp{padding:4px 8px;font-size:.65rem}}
-
+.btn-play{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;padding:7px 14px;border-radius:50px;font-weight:800;font-size:.78rem;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 15px rgba(90,158,95,0.3);white-space:nowrap}
+@media(max-width:400px){.header-xp{padding:4px 8px;font-size:.65rem}.btn-play{padding:6px 12px;font-size:.72rem}}
+.btn-play:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(90,158,95,0.4)}
 
 /* ==================== MINI-GAME GATE ==================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.game-gate{position:fixed;inset:0;z-index:200;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 16px 20px;text-align:center;background:linear-gradient(180deg,#0e0e0d 0%,#0d150e 40%,#0a120b 70%,#0e0e0d 100%)}
+.game-gate::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(90,158,95,0.08),transparent 60%)}
+.game-gate>*{position:relative;z-index:2}
+.game-gate .gg-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(90,158,95,0.12);border:1px solid rgba(90,158,95,0.25);color:var(--green);padding:6px 16px;border-radius:50px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;animation:fadeInUp .5s ease both}
+.game-gate .gg-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.game-gate h1{font-size:clamp(1.5rem,5vw,2.4rem);font-weight:900;color:#fff;margin-bottom:6px;animation:fadeInUp .6s ease .1s both}
+.game-gate h1 span{color:var(--green)}
+.game-gate .gg-sub{color:var(--dim);font-size:.88rem;margin-bottom:20px;max-width:420px;animation:fadeInUp .6s ease .2s both}
+.gg-start-btn{animation:fadeInUp .6s ease .3s both;margin-bottom:20px}
+.gg-start-btn .btn-play{padding:16px 40px;font-size:1.1rem;box-shadow:0 6px 30px rgba(90,158,95,0.4)}
+.gg-pregame{text-align:center}
+.gg-pregame .gg-rules{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;animation:fadeInUp .6s ease .35s both}
+.gg-pregame .rule{background:var(--bg3);border-radius:10px;padding:10px 14px;font-size:.75rem;color:var(--dim);font-weight:700;display:flex;align-items:center;gap:6px}
+.gg-pregame .rule span{font-size:1.1rem}
 /* Timer bar */
-
-
-
-
+.timer-bar{width:100%;max-width:460px;height:10px;background:var(--bg3);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--amber));border-radius:8px;transition:width .1s linear;width:100%}
+.timer-fill.danger{background:linear-gradient(90deg,var(--red),#e74c3c);animation:timerPulse 1s infinite}
+.timer-text{font-size:1.1rem;color:#fff;margin-bottom:16px;font-weight:900;letter-spacing:.02em}
 /* Game HUD */
-
-
-
-
-
+.game-hud{display:flex;justify-content:center;gap:20px;margin-bottom:16px;animation:fadeInUp .5s ease .3s both}
+.hud-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.hud-val{font-size:1.3rem;font-weight:900;color:#fff}
+.hud-val.xp-val{color:var(--xp-gold)}
+.hud-label{font-size:.6rem;color:var(--dimmer);text-transform:uppercase;letter-spacing:.1em}
 /* Game card */
-
-
-
-
-
-
-
-
-
-
+.gg-card{max-width:500px;width:100%;background:var(--bg2);border:1px solid rgba(90,158,95,0.15);border-radius:16px;padding:20px 16px;animation:fadeInUp .6s ease .4s both}
+.gg-round{font-size:.7rem;color:var(--dimmer);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;font-weight:700}
+.gg-question{font-size:1rem;font-weight:800;color:#fff;margin-bottom:14px;line-height:1.3}
+.gg-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gg-opt{background:var(--bg3);border:2px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 10px;cursor:pointer;font-size:.85rem;color:var(--cream);transition:all .15s;min-height:48px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;user-select:none;-webkit-tap-highlight-color:transparent}
+.gg-opt:hover{border-color:rgba(90,158,95,0.3);background:rgba(90,158,95,0.05)}
+.gg-opt.correct{border-color:var(--green);background:rgba(90,158,95,0.15);color:var(--green);animation:correctPop .3s ease}
+.gg-opt.wrong{border-color:var(--red);background:rgba(192,57,43,0.1);color:var(--red);animation:shakeWrong .4s ease}
+.gg-opt.disabled{pointer-events:none;opacity:.4}
+.gg-opt.disabled.correct{opacity:1}
 /* XP popup */
 .xp-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2rem;font-weight:900;color:var(--xp-gold);pointer-events:none;z-index:300;animation:xpFloat 1s ease forwards;text-shadow:0 2px 12px rgba(255,215,0,0.5)}
 /* Game result */
-
-
-
-
-
-
-
-
-
-
+.gg-result{display:none;text-align:center;animation:levelUp .6s ease both}
+.gg-result.show{display:block}
+.gg-result .rank-badge{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,rgba(90,158,95,0.2),rgba(255,215,0,0.15));border:3px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2.5rem}
+.gg-result h3{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:4px}
+.gg-result .rank-title{color:var(--green);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.gg-result .gg-verdict{color:var(--dim);font-size:.88rem;line-height:1.5;margin-bottom:20px;max-width:380px;margin-left:auto;margin-right:auto}
+.gg-result .xp-earned{display:inline-flex;align-items:center;gap:6px;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.25);color:var(--xp-gold);padding:8px 20px;border-radius:50px;font-size:.9rem;font-weight:800;margin-bottom:20px}
+.gg-result .result-actions{display:flex;flex-direction:column;align-items:center;gap:14px}
+.gg-skip{margin-top:14px;color:var(--dimmer);font-size:.75rem;cursor:pointer;background:none;border:none;text-decoration:underline;font-family:inherit}
+.game-gate.result-mode h1,.game-gate.result-mode .gg-sub,.game-gate.result-mode .timer-bar,.game-gate.result-mode .timer-text{display:none}
 
 /* ==================== HERO ==================== */
 .hero{padding:80px 20px 50px;position:relative;overflow:hidden}
@@ -300,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <body>
 
 <!-- ===== MINI-GAME GATE ===== -->
+
 <!-- ===== HEADER ===== -->
 <header class="header" id="header">
   <div class="container">
@@ -523,6 +524,7 @@ window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',window.scro
 // ===== SCROLL REVEAL =====
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 function initReveals(){document.querySelectorAll('.reveal,.reveal-zoom').forEach(el=>obs.observe(el))}
+initReveals();
 
 // ===== MINI-GAME =====
 const gameQs=[
@@ -537,7 +539,6 @@ let gIdx=0,gScore=0,gStreak=0,gXP=0,gTimer=30,gTimerInt=null,gStarted=false;
 const gate=document.getElementById('gameGate');
 const ggCard=document.getElementById('ggCard');
 const ggResult=document.getElementById('ggResult');
-if(quizGate){ document.body.style.overflow='hidden'; }
 
 var _ggBtn=document.getElementById('ggStartBtn'); if(_ggBtn) _ggBtn.addEventListener('click',function(){
   document.getElementById('ggPregame').style.display='none';
@@ -565,7 +566,10 @@ function startTimer(){
 function pickAnswer(el,idx){
   if(!gStarted)return;
   const correct=gameQs[gIdx].correct;
-  document.querySelectorAll(');
+  document.querySelectorAll('.gg-opt').forEach((o,i)=>{
+    o.classList.add('disabled');
+    if(i===correct)o.classList.add('correct');
+  });
   if(idx===correct){
     gScore++;gStreak++;
     const bonus=gStreak>1?gStreak*5:0;
@@ -605,13 +609,16 @@ function showGameResult(){
   document.getElementById('xpTotal').textContent=gXP+' XP Earned';
   document.getElementById('headerXPVal').textContent=gXP+' XP';
 }
-document.getElementById('ggCTA').addEventListener('click',e=>{e.preventDefault();showLanding()});
-document.getElementById('ggSkip').addEventListener('click',showLanding);
+var _ggCTA=document.getElementById('ggCTA'); if(_ggCTA) _ggCTA.addEventListener('click',e=>{e.preventDefault();showLanding()});
+var _ggSkip=document.getElementById('ggSkip'); if(_ggSkip) _ggSkip.addEventListener('click',showLanding);
 function showLanding(){
   window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;
   document.body.style.overflow='';
   gate.style.transition='opacity .5s';gate.style.opacity='0';
   setTimeout(()=>{gate.style.display='none';window.scrollTo(0,0);initReveals();initCounters();initProgress()},500);
+}
+// Auto-init for no-quiz pages
+if(!document.getElementById('gameGate')){initReveals();initCounters();initProgress();}
 }
 // ===== COUNTERS =====
 function initCounters(){}

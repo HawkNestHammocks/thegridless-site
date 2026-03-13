@@ -34,7 +34,7 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .gradient-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* Scroll reveal */
-.reveal{opacity:1;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
 .reveal.slide-left{transform:translateX(-40px)}
 .reveal.slide-right{transform:translateX(40px)}
 .reveal.visible{opacity:1;transform:translate(0)}
@@ -145,33 +145,33 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.15;text-t
 .feature-card p{font-size:.9rem;color:var(--dim);line-height:1.55}
 
 /* ===== QUIZ GATE ===== */
-
-
-
-
-
+.v2-gate{position:fixed;inset:0;z-index:200;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px 20px;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,#1a1008 40%,#150d05 70%,var(--bg) 100%)}
+.v2-gate::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(232,125,47,0.1),transparent 60%)}
+.v2-gate>*{position:relative;z-index:2}
+.v2-gate .g-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,125,47,0.12);border:1px solid rgba(232,125,47,0.25);color:var(--orange);padding:7px 16px;border-radius:100px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px}
+.v2-gate .g-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:gPulse 2s infinite}
 @keyframes gPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.v2-gate h1{font-family:var(--font-head);font-size:clamp(1.5rem,5vw,2.6rem);color:#fff;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.v2-gate h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.v2-gate .g-sub{color:var(--dim);font-size:0.9rem;margin-bottom:24px;max-width:460px}
+.g-card{max-width:520px;width:100%;background:var(--bg2);border:1px solid rgba(232,125,47,0.2);border-radius:16px;padding:22px 18px;text-align:left}
+.g-progress{display:flex;gap:5px;margin-bottom:20px}
+.g-dot{height:4px;flex:1;border-radius:4px;background:var(--bg3);transition:background 0.3s}
+.g-dot.active{background:var(--orange)}
+.g-dot.done{background:#4CAF50}
+.g-question{font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;line-height:1.35}
+.g-opts{display:flex;flex-direction:column;gap:7px}
+.g-opt{background:var(--bg3);border:2px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:0.88rem;color:var(--cream);transition:all 0.2s;min-height:44px;display:flex;align-items:center}
+.g-opt:hover{border-color:rgba(255,255,255,0.2);background:var(--bg)}
+.g-opt.selected{border-color:var(--orange);background:rgba(232,125,47,0.1)}
+.g-result{display:none;text-align:center;padding-top:10px}
+.g-result.show{display:block}
+.g-result h3{font-family:var(--font-head);font-size:1.3rem;color:#fff;text-transform:uppercase;margin-bottom:6px}
+.g-result .g-verdict{color:var(--dim);font-size:0.9rem;line-height:1.6;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto}
+.g-result .g-verdict strong{color:var(--orange)}
+.g-skip{margin-top:18px;color:var(--dim);font-size:0.78rem;cursor:pointer;background:none;border:none;text-decoration:underline;transition:color 0.2s;font-family:inherit}
+.g-skip:hover{color:var(--cream)}
+.v2-gate.result-mode h1,.v2-gate.result-mode .g-sub{display:none}
 
 /* Live bar */
 .live-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(212,169,75,0.2);padding:10px 12px;display:flex;align-items:center;justify-content:center;gap:8px;transform:translateY(100%);transition:transform .4s ease;font-size:0.72rem}
@@ -283,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </head>
 <body>
 
+<!-- ===== QUIZ GATE ===== -->
 
 <!-- HEADER -->
 <header class="site-header" id="header">
@@ -636,7 +637,6 @@ const gateQs=[
 let gIdx=0,gScore=0;
 const gCard=document.getElementById('gCard'),gResult=document.getElementById('gResult');
 const v2Gate=document.getElementById('v2Gate');
-if(quizGate){ document.body.style.overflow='hidden'; }
 
 function renderGQ(){
   for(let i=0;i<3;i++){document.getElementById('gd'+i).className='g-dot'+(i<gIdx?' done':'')+(i===gIdx?' active':'')}
@@ -646,7 +646,7 @@ function renderGQ(){
 }
 function pickG(el,i){
   gScore+=gateQs[gIdx].scores[i];
-  document.querySelectorAll(');
+  document.querySelectorAll('.g-opt').forEach(o=>{o.style.pointerEvents='none';o.style.opacity='.5'});
   el.classList.add('selected');el.style.opacity='1';
   document.getElementById('gd'+gIdx).className='g-dot done';
   setTimeout(()=>{gIdx++;if(gIdx<gateQs.length)renderGQ();else showGResult()},500);
@@ -661,14 +661,14 @@ function showGResult(){
   else if(gScore>=4){t.textContent='Access Granted — Welcome Aboard';v.innerHTML='Your answers show real intent to prepare. <strong>Gridless will fill the gaps in your knowledge.</strong> Over 4,800 challenges are waiting for you.';}
   else{t.textContent='Access Granted — Start Your Journey';v.innerHTML='Everyone starts somewhere. <strong>Gridless will take you from beginner to confident</strong> with structured lessons, quizzes, and offline survival guides.';}
 }
-document.getElementById('gCTA').addEventListener('click',function(e){e.preventDefault();showV2Landing()});
-document.getElementById('gSkip').addEventListener('click',function(){showV2Landing()});
+var _gCTA=document.getElementById('gCTA'); if(_gCTA) _gCTA.addEventListener('click',function(e){e.preventDefault();showV2Landing()});
+var _gSkip=document.getElementById('gSkip'); if(_gSkip) _gSkip.addEventListener('click',function(){showV2Landing()});
 function showV2Landing(){
   document.body.style.overflow='';
   v2Gate.style.transition='opacity .5s';v2Gate.style.opacity='0';
   setTimeout(()=>{v2Gate.style.display='none'},500);
 }
-if(document.getElementById("gCard")){ renderGQ(); }
+if(document.getElementById('gCard')){renderGQ();}
 
 // Live activity bar
 setTimeout(()=>{
