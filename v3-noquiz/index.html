@@ -539,7 +539,7 @@ const ggCard=document.getElementById('ggCard');
 const ggResult=document.getElementById('ggResult');
 if(quizGate){ document.body.style.overflow='hidden'; }
 
-document.getElementById('ggStartBtn').addEventListener('click',function(){
+var _ggBtn=document.getElementById('ggStartBtn'); if(_ggBtn) _ggBtn.addEventListener('click',function(){
   document.getElementById('ggPregame').style.display='none';
   document.getElementById('ggGameArea').style.display='block';
   renderGQ();

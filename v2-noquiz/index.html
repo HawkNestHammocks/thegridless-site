@@ -668,7 +668,7 @@ function showV2Landing(){
   v2Gate.style.transition='opacity .5s';v2Gate.style.opacity='0';
   setTimeout(()=>{v2Gate.style.display='none'},500);
 }
-renderGQ();
+if(document.getElementById("gCard")){ renderGQ(); }
 
 // Live activity bar
 setTimeout(()=>{
