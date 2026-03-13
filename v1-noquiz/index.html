@@ -735,7 +735,7 @@ if(!quizGate){ initReveals(); initCounters(); document.querySelectorAll(".stats-
 // Lock scroll while quiz is showing (only if quiz exists)
 if(quizGate){ document.body.style.overflow='hidden'; }
 
-skipBtn.addEventListener('click',()=>showLanding());
+if(skipBtn){ skipBtn.addEventListener('click',()=>showLanding()); }
 
 // ===== SURVIVAL READINESS QUIZ =====
 const questions=[
@@ -831,7 +831,7 @@ function showResult(){
   });
 }
 
-renderQuestion();
+if(document.getElementById("quizCard")){ renderQuestion(); }
 
 // Count-up animation for disaster stats — per card
 function initCounters(){
