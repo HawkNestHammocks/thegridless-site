@@ -537,7 +537,7 @@ let gIdx=0,gScore=0,gStreak=0,gXP=0,gTimer=30,gTimerInt=null,gStarted=false;
 const gate=document.getElementById('gameGate');
 const ggCard=document.getElementById('ggCard');
 const ggResult=document.getElementById('ggResult');
-document.body.style.overflow='hidden';
+if(quizGate){ document.body.style.overflow='hidden'; }
 
 document.getElementById('ggStartBtn').addEventListener('click',function(){
   document.getElementById('ggPregame').style.display='none';

@@ -636,7 +636,7 @@ const gateQs=[
 let gIdx=0,gScore=0;
 const gCard=document.getElementById('gCard'),gResult=document.getElementById('gResult');
 const v2Gate=document.getElementById('v2Gate');
-document.body.style.overflow='hidden';
+if(quizGate){ document.body.style.overflow='hidden'; }
 
 function renderGQ(){
   for(let i=0;i<3;i++){document.getElementById('gd'+i).className='g-dot'+(i<gIdx?' done':'')+(i===gIdx?' active':'')}

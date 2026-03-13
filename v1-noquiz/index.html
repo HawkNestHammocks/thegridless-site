@@ -730,8 +730,10 @@ function showLanding(){
     document.querySelectorAll('.stats-bar').forEach(el=>setTimeout(()=>el.classList.add('visible'),300));
   },500);
 }
-// Lock scroll while quiz is showing
-document.body.style.overflow='hidden';
+// No-quiz fallback: if no quizGate, show landing immediately
+if(!quizGate){ initReveals(); initCounters(); document.querySelectorAll(".stats-bar").forEach(function(el){setTimeout(function(){el.classList.add("visible")},300)}); }
+// Lock scroll while quiz is showing (only if quiz exists)
+if(quizGate){ document.body.style.overflow='hidden'; }
 
 skipBtn.addEventListener('click',()=>showLanding());
 
